@@ -1,0 +1,21 @@
+.add-category-container {
+    text-align: center;
+}
+.add-category-label {
+    font-size: 2em;
+    padding-bottom: 5vh;
+}
+.get-category {
+    color: black;
+}
+.add-category-btn {
+    padding: 9px 5px;
+    
+}
+.show-category-table {
+    margin: auto;
+    width: 50%;
+    text-align: center;
+    margin-top: 5vh;
+    border: 3px solid white;
+}
