@@ -62,7 +62,7 @@
                 <input type=file class="add-product-input" name="image"  style="color:white;" required>
                 </div>
                 
-                <input type=submit class="add-product-input btn btn-primary" name="submit">
+                <input type=submit class="add-product-input btn btn-primary" name="submit" value="Add Category">
                 
 
             </form>

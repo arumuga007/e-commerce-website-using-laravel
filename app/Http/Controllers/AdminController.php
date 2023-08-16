@@ -19,6 +19,11 @@ class AdminController extends Controller
         $data->save();
         return redirect()->back()->with('message',"The category ".$data->category_name."  added successfully");
     }
+    public function edit_category($id, $new_name) {
+        $data = Category::find($id);
+        $data->category_name = $new_name;
+        return redirect()->back()->with('message', "The category edited successfully");
+    }
     public function delete_category($id) {
         $data = Category::find($id);
         $data->delete();
@@ -28,6 +33,7 @@ class AdminController extends Controller
         $data = Category::all();
         return view('admin.product', compact('data'));
     }
+
     public function add_product(Request $request) {
         $image = $request->file('image');
         $imageName = time() . '.' . $image->getClientOriginalExtension();
@@ -43,5 +49,8 @@ class AdminController extends Controller
         $product->save();
         return redirect()->back()->with('message', $request->title. " product added sucessfully");
         
+    }
+    public function show_product() {
+        return view('admin.show_product');
     }
 }

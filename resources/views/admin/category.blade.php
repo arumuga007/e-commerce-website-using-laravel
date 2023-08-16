@@ -21,7 +21,7 @@
                 @if(session('message'))
                   
                   <div class="alert alert-success">
-                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">X</button>
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
                     {{session('message')}}</div>
                 @endif
                 <div class="add-category-label">Add Category</div>
@@ -34,14 +34,15 @@
             
             
                 <table class="show-category-table"> 
-                  <tr> 
+                  <tr > 
                     <th>Category</th>
-                    <th>Action</th>
+                    <th colspan="2" style="text-align:center;">Action</th>
                   </tr>
                   @foreach($data as $data)
-                  <tr> 
+                  <tr style="margin-bottom: 10px;"> 
                     <td>{{$data->category_name}}</td>
-                    <td><a onclick = "return confirm('Are you sure want to delete?')"href= "{{url('delete_category', $data->id)}}" class="btn btn-danger">Delete</a></td>
+                    <td class="btn btn-primary" href= "{{url('edit_category/'.$data->id.'/'.$new_category_name)}}">Edit</td>
+                    <td><a onclick = "return confirm('Are you sure want to delete?')"href= "{{url('delete_category/'.$data->id)}}" class="btn btn-danger">Delete</a></td>
                   </tr>
                   @endforeach
                 </table>
