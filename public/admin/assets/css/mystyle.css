@@ -19,3 +19,20 @@
     margin-top: 5vh;
     border: 3px solid white;
 }
+.add-product-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2vh;
+    width: 100%;
+}
+.add-product-input-container {
+    color: black;
+}
+.add-product-label {
+    width: 200px;
+}
+.add-product-input {
+    color: black;
+}
