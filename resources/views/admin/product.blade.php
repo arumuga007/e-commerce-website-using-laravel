@@ -29,32 +29,38 @@
             @csrf
                 <div class='add-product-inputs-container'>
                 <label class="add-product-label"> Product Name:
-                <input type=text class="add-product-input" name="title" Required>
+                <input type=text class="add-product-input" name="title" Required style="border-radius:12px;">
                 </div>
                 <div class='add-product-inputs-container'>
                 <label class="add-product-label"> Product Description:
-                <input type=text class="add-product-input" name="description" required>
+                <input type=text class="add-product-input" name="description" required style="border-radius:12px;">
                 </div>
                 <div class='add-product-inputs-container'>
                 <label class="add-product-label"> Product Quantity:
-                <input type=number class="add-product-input" name="quantity" required>
+                <input type=number class="add-product-input" name="quantity" required style="border-radius:12px;">
                 </div>
                 <div class='add-product-inputs-container'>
                 <label class="add-product-label"> Product Price:
-                <input type=number class="add-product-input" name="price" Required>
+                <input type=number class="add-product-input" name="price" Required style="border-radius:12px;">
                 </div>
                 <div class='add-product-inputs-container'>
                 <label class="add-product-label"> Product Discount:
-                <input type=number class="add-product-input" name="discount_price" Required>
+                <input type=number class="add-product-input" name="discount_price" Required style="border-radius:12px;">
                 </div>
                 <div class='add-product-inputs-container'>
                 <label class="add-product-label"> Product Category:
-                <select name="category" class="add-product-input" Required>
+                <select name="category" class="add-product-input" Required style="border-radius:12px;" id="categorySelect">
                     <option  value =""selected="">Add a Category here</option>
-                    <option>shirts</options>
-                    @foreach($data as $data)
-                        <option value={{$data->category_name}}>{{$data->category_name}}</option>
+                    @foreach($categories as $data)
+                        <option value='{{$data->id}}'>{{$data->category_name}}</option>
                     @endforeach
+                </select>
+                </div>
+                
+                <div class='add-product-inputs-container'>
+                <label class="add-product-label"> Product SubCategory:
+                <select name="subcategory" class="add-product-input" Required style="border-radius:12px;" id="subcategorySelect">
+                    <option  value =""selected="">Add a SubCategory here</option>
                 </select>
                 </div>
                 <div class='add-product-inputs-container'>
@@ -73,6 +79,23 @@
 </div>
 </div>
     @include('admin.script')
+    <script>
+    document.getElementById('categorySelect').addEventListener('change', function() {
+        var selectedCategoryId = this.value;
+        var subcategorySelect = document.getElementById('subcategorySelect');
+        
+        // Clear previous subcategory options
+        subcategorySelect.innerHTML = '<option value="">Select Subcategory</option>';
+        
+        // Retrieve subcategories based on selected category
+        @foreach ($subcategories as $subcategory)
+            if ({{ $subcategory->category_id }} == selectedCategoryId) {
+                subcategorySelect.innerHTML += '<option value="{{ $subcategory->id }}">{{ $subcategory->subcategory_name }}</option>';
+            }
+        @endforeach
+    });
+</script>
+
 
 </body>
 </html>

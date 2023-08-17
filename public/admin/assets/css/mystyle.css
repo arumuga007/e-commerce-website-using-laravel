@@ -91,3 +91,26 @@
 .add-product-input {
     color: black;
 }
+.show-product-container {
+    text-align: center;
+    width: 100%;
+}
+.show-product-header {
+    font-size: 1.7em;
+    margin-bottom: 20px;
+}
+.show-product-table {
+    text-align: center;
+    width: 100%;
+    margin-left: auto;
+    border: 3px solid white;
+}
+.product-table-header {
+    padding:15px 0px;
+    background-color: aqua;
+    
+}
+.show-product-image {
+    height: 100px;
+    width: 100px;
+}

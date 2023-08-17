@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Category;
 use App\Models\product;
+use App\Models\subcategory;
 
 class AdminController extends Controller
 {
@@ -34,12 +35,29 @@ class AdminController extends Controller
         $data->delete();
         return redirect()->back()->with('message', "The category ".$data->category_name." deleted successfully");
     }
+
+    public function view_subcategory() {
+        $categories = Category::orderBy('category_name', 'ASC')->get();
+        $data['categories'] = $categories;
+        return view('admin.subcategory', $data);
+    }
+
+    public function add_subcategory(Request $request) {
+        $data = new subcategory();
+        $data->subcategory_name = $request->subcategory_name;
+        $data->category_id = $request->category;
+        $data->save();
+        return redirect()->back()->with('message',"The subcategory added successfully");
+    }
     public function view_product() {
-        $data = Category::all();
-        return view('admin.product', compact('data'));
+        $categories = Category::all();
+        $subcategories = subcategory::all();
+        return view('admin.product', compact('categories', 'subcategories'));
     }
 
     public function add_product(Request $request) {
+        $category = Category::find($request->category);
+        $subcategory = subcategory::find($request->subcategory);
         $image = $request->file('image');
         $imageName = time() . '.' . $image->getClientOriginalExtension();
         $image->move(public_path('uploads'), $imageName);
@@ -49,13 +67,15 @@ class AdminController extends Controller
         $product->quantity = $request->quantity;
         $product->price = $request->price;
         $product->discount_price = $request->discount_price;
-        $product->category = $request->category;
+        $product->category = $category->category_name;
+        $product->subcategory = $subcategory->subcategory_name;
         $product->image = $imageName;
         $product->save();
         return redirect()->back()->with('message', $request->title. " product added sucessfully");
         
     }
     public function show_product() {
-        return view('admin.show_product');
+        $data = product::all();
+        return view('admin.show_product', compact('data'));
     }
 }

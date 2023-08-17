@@ -37,3 +37,5 @@ Route::post('/add_product', [AdminController::class, 'add_product']);
 Route::get('/show_product', [AdminController::class, 'show_product']);
 Route::get('/edit_category/{id}', [AdminController::class, 'edit'])->name('edit_category');
 Route::post('/modify_category/{id}', [AdminController::class, 'modify_category']);
+Route::get('/view_subcategory', [AdminController::class, 'view_subcategory']);
+Route::post('/add_subcategory', [AdminController::class, 'add_subcategory']);

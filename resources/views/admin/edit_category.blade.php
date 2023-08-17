@@ -74,7 +74,7 @@
         @csrf
         <label for="newCategory">New Value:</label>
         <input type="text" id="newCategory" name="newCategory" placeholder="Enter new category...">
-        <button type="submit">Add Category</button>
+        <button type="submit">Edit Category</button>
       </form>
     </div>
   </div>
