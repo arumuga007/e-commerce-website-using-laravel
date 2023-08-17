@@ -16,8 +16,9 @@
         @include('admin.header')
         <!-- partial -->
         <div class="main-panel">
-          <div class="content-wrapper">
-            <div class="add-category-container">
+          <div class="content-wrapper" style="postion: relative;">
+
+            <div class="add-category-container" >
                 @if(session('message'))
                   
                   <div class="alert alert-success">
@@ -41,7 +42,7 @@
                   @foreach($data as $data)
                   <tr style="margin-bottom: 10px;"> 
                     <td>{{$data->category_name}}</td>
-                    <td class="btn btn-primary" href= "{{url('edit_category/'.$data->id.'/'.$new_category_name)}}">Edit</td>
+                    <td class="btn btn-primary"><a href= "{{route('edit_category', $data->id)}}">Edit</a></td>
                     <td><a onclick = "return confirm('Are you sure want to delete?')"href= "{{url('delete_category/'.$data->id)}}" class="btn btn-danger">Delete</a></td>
                   </tr>
                   @endforeach

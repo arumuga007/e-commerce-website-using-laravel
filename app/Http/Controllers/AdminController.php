@@ -19,10 +19,15 @@ class AdminController extends Controller
         $data->save();
         return redirect()->back()->with('message',"The category ".$data->category_name."  added successfully");
     }
-    public function edit_category($id, $new_name) {
+    public function edit( $id) {
         $data = Category::find($id);
-        $data->category_name = $new_name;
-        return redirect()->back()->with('message', "The category edited successfully");
+        return view('admin.edit_category', compact('data'));
+    }
+    public function modify_category(Request $request,$id) {    
+        $data = Category::find($id);
+        $data->category_name = $request->newCategory;
+        $data->save();
+        return redirect('/view_category')->with('message',"The category edited successfully");
     }
     public function delete_category($id) {
         $data = Category::find($id);
