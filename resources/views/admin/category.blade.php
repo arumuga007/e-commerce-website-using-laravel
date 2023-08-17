@@ -37,13 +37,13 @@
                 <table class="show-category-table"> 
                   <tr > 
                     <th>Category</th>
-                    <th colspan="2" style="text-align:center;">Action</th>
+                    <th style="text-align:center;">Action</th>
                   </tr>
                   @foreach($data as $data)
                   <tr style="margin-bottom: 10px;"> 
                     <td>{{$data->category_name}}</td>
-                    <td class="btn btn-primary"><a href= "{{route('edit_category', $data->id)}}">Edit</a></td>
-                    <td><a onclick = "return confirm('Are you sure want to delete?')"href= "{{url('delete_category/'.$data->id)}}" class="btn btn-danger">Delete</a></td>
+                    <td><a href= "{{route('edit_category', $data->id)}}"><i class='far fa-edit' style="margin-right: 15px;color:green;"></i></a>
+                    <a onclick = "return confirm('Are you sure want to delete?')"href= "{{url('delete_category/'.$data->id)}}"><i class="fa fa-trash" style="color: red;font-s"></i></a></td>
                   </tr>
                   @endforeach
                 </table>
@@ -55,6 +55,6 @@
       <!-- page-body-wrapper ends -->
     </div>
     @include('admin.script')
-
+    <script src="https://kit.fontawesome.com/42f8c3c6e9.js" crossorigin="anonymous"></script>
 </body>
 </html>

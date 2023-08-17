@@ -31,11 +31,15 @@ Route::middleware([
 Route::get('/redirect', [HomeController::class, 'redirect']);
 Route::get('/view_category', [AdminController::class, 'view_category']);
 Route::post('/add_category', [AdminController::class, 'add_category']);
+Route::get('/edit_category/{id}', [AdminController::class, 'edit'])->name('edit_category');
+Route::post('/modify_category/{id}', [AdminController::class, 'modify_category']);
 Route::get('/delete_category/{id}', [AdminController::class, 'delete_category']);
 Route::get('/view_product', [AdminController::class, 'view_product']);
 Route::post('/add_product', [AdminController::class, 'add_product']);
 Route::get('/show_product', [AdminController::class, 'show_product']);
-Route::get('/edit_category/{id}', [AdminController::class, 'edit'])->name('edit_category');
-Route::post('/modify_category/{id}', [AdminController::class, 'modify_category']);
+Route::get('/edit_product/{id}', [AdminController::class, 'edit_product'])->name('edit_product');
+Route::post('/modify_product/{id}', [AdminController::class, 'modify_product']);
+Route::get('/delete_product/{id}', [AdminController::class, 'delete_product']);
 Route::get('/view_subcategory', [AdminController::class, 'view_subcategory']);
 Route::post('/add_subcategory', [AdminController::class, 'add_subcategory']);
+

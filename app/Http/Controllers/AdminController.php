@@ -74,8 +74,42 @@ class AdminController extends Controller
         return redirect()->back()->with('message', $request->title. " product added sucessfully");
         
     }
+
     public function show_product() {
         $data = product::all();
         return view('admin.show_product', compact('data'));
+    }
+
+    public function edit_product($id) {
+        $data = product::find($id);
+        $categories = Category::all();
+        $subcategories = subcategory::all();
+        $sub_categories = subcategory::all();
+        return view('admin.edit_product', compact('data', 'categories', 'subcategories', 'sub_categories'));
+    }
+
+    public function modify_product(Request $request, $id) {
+        $product = product::find($id);
+        $category = Category::find($request->category);
+        $subcategory = subcategory::find($request->subcategory);
+        $product->title = $request->title;
+        $product->description = $request->description;
+        $product->quantity = $request->quantity;
+        $product->price = $request->price;
+        $product->discount_price = $request->discount_price;
+        $product->category = $category->category_name;
+        $product->subcategory = $subcategory->subcategory_name;
+        $image = $request->file('image');
+        $imageName = time() . '.' . $image->getClientOriginalExtension();
+        $image->move(public_path('uploads'), $imageName);
+        $product->image = $imageName;
+        $product->save();
+        return redirect()->back()->with('message', $request->title. " product edited sucessfully");
+    }
+
+    public function delete_product($id) {
+        $data = product::find($id);
+        $data->delete();
+        return redirect()->back()->with('message', "Product Removed Successfully");
     }
 }
