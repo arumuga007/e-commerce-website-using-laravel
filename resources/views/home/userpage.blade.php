@@ -4,6 +4,8 @@
       <!-- Basic -->
       <meta charset="utf-8" />
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="csrf-token" content="{{ csrf_token() }}">
+
       <!-- Mobile Metas -->
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
       <!-- Site Metas -->
@@ -31,18 +33,19 @@
         @include('home.why')
       <!-- end why section -->
         @include('home.new_arrival')
-      <!-- arrival section -->
         @include('home.product')
+      <!-- arrival section 
+        
         @include('home.subscribe')
         @include('home.client')
-        @include('home.footer')
+        @include('home.footer') 
       <div class="cpy_">
          <p class="mx-auto">© 2021 All Rights Reserved By <a href="https://html.design/">Free Html Templates</a><br>
          
             Distributed By <a href="https://themewagon.com/" target="_blank">ThemeWagon</a>
          
          </p>
-      </div>
+      </div> -->
       <!-- jQery -->
       <script src="home/js/jquery-3.4.1.min.js"></script>
       <!-- popper js -->

@@ -109,6 +109,26 @@
   .custom-select select option:checked {
     background-color: #007bff; /* Highlight selected option */
   }
+  #success-message {
+    
+    margin-left: 17%;
+    position: absolute;
+    text-align: center;
+    min-width: 40%;
+    height: 40px;
+    background-color: aqua;
+    border-radius: 3px;
+    opacity: 0;
+    transition: all linear 0.5s;
+    overflow: hidden;
+  }
+  #close {
+    position:absolute;
+    bottom: 2.7%;
+    right: 3%;
+    font-size: 1.5em;
+    transition: all linear 0.5s;
+  }
 </style>
 <body>
 <div class="container-scroller">
@@ -121,17 +141,13 @@
         <!-- partial -->
         <div class="main-panel">
           <div class="content-wrapper" style="postion: relative;">
-            
-            @if(session('message'))
-                    
-                    <div class="alert alert-success subcategory-message">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
-                      {{session('message')}}</div>
-                  @endif
-          <div class="container">
+          <div id="success-message" class="alert alert-success">
+          
+          </div>
+    <div class="container">
     <h1 class="subcategory-heading">Add Subcategory</h1>
-    <form action="/add_subcategory" method="post">
-        @csrf
+    <form id="subcategory_form" method="post">
+      @csrf
       <label for="subcategoryName " class="subcategory-label">Category:</label>
       <select id="subcategoryName" required class="subcategory-select custom-select" name="category">
         <option value="" selected="">Add Subcategory</option>
@@ -157,6 +173,54 @@
       <!-- page-body-wrapper ends -->
     </div>
     @include('admin.script')
+    <script>
+      let message = document.getElementById('success-message');
+      let form = document.getElementById('subcategory_form').addEventListener('submit', (event) => {
+        console.log('button clicked');
+    event.preventDefault();
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    const Data = {
+        category: event.target.category.value,
+        subcategory: event.target.subcategory_name.value
+    };
+    fetch('/api/post-subcategory', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': csrfToken   // Corrected content-Type header
+        },
+        body: JSON.stringify(Data)  // Corrected comma, removed semicolon
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log(data);
+        message.style.opacity = '1';
+        message.innerHTML = data.message;
+        message.innerHTML += '<span type="button" id="close"><i class="fa fa-times" aria-hidden="true" id="close_dialog" onclick="closeMsg()"></i></span>';
+        // Handle response data
+    })
+    .catch(error => {
+        console.error('Fetch error:', error);
+    });
+});
+    
+let closeDialog = document.getElementById('close_dialog');
+closeDialog.addEventListener('click', () => {
+      console.log('button clickeds');
+      message.style.opacity = '0';
+    })
+console.log("asss", closeDialog);
+function closeMsg() {
+  console.log('clicked');
+  message.style.opacity = '0';
+}
+    </script>
+    <script src="https://kit.fontawesome.com/42f8c3c6e9.js" crossorigin="anonymous"></script>
 
 </body>
 </html>

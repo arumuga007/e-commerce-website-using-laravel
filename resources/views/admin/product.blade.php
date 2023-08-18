@@ -71,7 +71,7 @@
                 <input type=submit class="add-product-input btn btn-primary" name="submit" value="Add Category">
                 
 
-            </form>
+        </form>
         </div>
       </div>
       <!-- page-body-wrapper ends -->

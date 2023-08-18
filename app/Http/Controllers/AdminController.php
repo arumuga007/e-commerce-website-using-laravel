@@ -112,4 +112,13 @@ class AdminController extends Controller
         $data->delete();
         return redirect()->back()->with('message', "Product Removed Successfully");
     }
+
+    public function post_subcategory(Request $request) {
+        $data = $request->json()->all();
+        $sub_category = new subcategory();
+        $sub_category->subcategory_name = $data['subcategory'];
+        $sub_category->category_id = $data['category'];
+        $sub_category->save();
+        return response()->json(['message' => $data['subcategory'].' added to subcategory list successfully']);
+    }
 }

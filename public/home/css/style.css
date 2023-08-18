@@ -8,8 +8,11 @@ body {
   color: #0c0c0c;
   background-color: #ffffff;
   overflow-x: hidden;
+  overflow-y: auto;
 }
-
+html, body {
+  overflow-y: auto;
+}
 .layout_padding {
   padding: 70px 0;
 }
@@ -244,7 +247,7 @@ a:focus {
   top: 0;
 }
 
-/*end header section*/
+/*end header section row*/
 /* slider section */
 .slider_section {
   -webkit-box-flex: 1;

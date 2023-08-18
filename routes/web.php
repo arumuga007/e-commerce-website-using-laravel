@@ -42,4 +42,9 @@ Route::post('/modify_product/{id}', [AdminController::class, 'modify_product']);
 Route::get('/delete_product/{id}', [AdminController::class, 'delete_product']);
 Route::get('/view_subcategory', [AdminController::class, 'view_subcategory']);
 Route::post('/add_subcategory', [AdminController::class, 'add_subcategory']);
+Route::post('/api/post-subcategory', [AdminController::class, 'post_subcategory']);
+Route::get('/api/get-products', [HomeController::class, 'getProducts']);
+Route::get('/product-details', [HomeController::class, 'productDetails']);
+
+
 
