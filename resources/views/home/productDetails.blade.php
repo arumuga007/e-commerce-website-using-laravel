@@ -35,7 +35,9 @@
          
          width: 40%;
         }
-        
+        .product-details-right {
+         width: 30%;
+        }
         .details-img-container{
             overflow: hidden;
             height: 80%;
@@ -45,17 +47,16 @@
             height: 100%;
         }
         .details-btn-container{
-            margin-top: 10px;
-            height: 15%;
+            margin-top: 30px;
             width: 100%;
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             gap: 2vw;
         }
         .details-btn {
-            padding: 15px 30px;
+            padding: 10px 50px;
             color: white;
             border-radius: 4px;
             font-size: 1.2em;
@@ -98,6 +99,32 @@
          font-size: 1.5em;
 
       }
+      .delivery-details {
+         font-size: 1.2em;
+         font-weight: 500;
+      }
+      .available-quantity {
+         margin-top: 10px;
+         font-weight: 500;
+         margin-top: 10px;
+      }
+
+      .product-quantity {
+         font-size: 1.2em;
+         font-weight: 500;
+         margin-top: 10px;
+      }
+      .quantity-input {
+         width: 150px;
+         border-radius: 5px;
+      }
+      .buy-btn {
+         padding: 15px 65px;
+      }
+      .prevent-execute {
+         
+         color:black;
+      }
     </style>
    <body>
       <div class="hero_area">
@@ -107,16 +134,7 @@
                 <div class="details-img-container">
                   <img src="uploads/{{$data->image}}">
                 </div>
-                <div class="details-btn-container">
-                  <a href="{{url('')}}" class="details-btn" style="background-color: #FF9F00;">
-                     <i class="fa-solid fa-cart-shopping"></i>
-                     Add to Cart 
-                  </a>
-                  <a href="{{url('')}}" class="details-btn" style="background-color: #FB641B;">
-                  <i class="fas fa-bolt"></i>
-                     Buy Now 
-                  </a>
-                </div>
+                
             </div>
             <div class="product-details-right">
                <div>
@@ -141,6 +159,31 @@
                      <span style="color: #FF9F00">{{$data->category}}</span>   ||   <span style="color: #FB641B;">{{$data->subcategory}}</span>
                   </div>
             </div>
+            <div class="product-details-rightmost">
+               <div class="delivery-details">Free Delivery <i class="fas fa-shipping-fast"></i></div>
+               <div class="product-stock">
+                  @if($data->quantity > 0)
+                     <div class="in-stock" style="color: green">In stock <i class="fa-solid fa-tag"></i></div>
+                  @else
+                     <div style="color: red;">Out of Stock</div>
+                  @endif
+               </div>
+               <div class="available-quantity">Available Quantity: <span>{{$data->quantity}}</span></div>
+               <div class="product-quantity">
+                  <span>Quantity: </span>
+                  <input type=number value="1" min="1" onchange="checkQuantity()" class="quantity-input" id="quantity">
+               </div>
+               <div class="details-btn-container">
+                  <a href="{{url('')}}" class="details-btn" style="background-color: #FF9F00;" onclick="preventExecute(event)" id="addcart">
+                     <i class="fa-solid fa-cart-shopping"></i>
+                     Add to Cart 
+                  </a>
+                  <button class="details-btn buy-btn" style="background-color: #FB641B;" onclick="preventExecute(event)" id="buynow">
+                  <i class="fas fa-bolt"></i>
+                     Buy Now 
+   </button>
+                </div>
+            </div>
         </div>
         @include('home.subscribe')
         @include('home.client')
@@ -151,7 +194,7 @@
             Distributed By <a href="https://themewagon.com/" target="_blank">ThemeWagon</a>
          
          </p>
-      </div>
+      </div>   
       <!-- jQery -->
       <script src="home/js/jquery-3.4.1.min.js"></script>
       <!-- popper js -->
@@ -161,5 +204,37 @@
       <!-- custom js -->
       <script src="home/js/custom.js"></script>
       <script src="https://kit.fontawesome.com/42f8c3c6e9.js" crossorigin="anonymous"></script>
+      <script>
+         var inputChanged = false;
+         let addCart = document.getElementById('addcart');
+         let buynow = document.getElementById('buynow');
+         function checkQuantity() {
+            let value = document.getElementById('quantity').value;
+            if(value > {{$data->quantity}}) {
+               inputChanged = true;
+               addCart.classList.add('prevent-execute');
+               buynow.classList.add('prevent-execute');
+            }
+            else {
+               inputChanged = false;
+               addCart.classList.remove('prevent-execute');
+               buynow.classList.remove('prevent-execute');
+            }
+         }
+         function preventExecute(event) {
+            if(inputChanged) {
+            event.preventDefault();
+               addCart.classList.add('prevent-execute');
+               buynow.classList.add('prevent-execute');
+            }
+            else {
+               @auth
+                  console.log('called');
+               @else
+                  window.location.href = 'login';
+               @endauth
+            }
+         }
+      </script>
    </body>
 </html>
