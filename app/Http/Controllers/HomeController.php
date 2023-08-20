@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\product;
 use App\Models\Cart;
+use App\Models\Order;
 
 class HomeController extends Controller
 {
@@ -64,10 +65,21 @@ class HomeController extends Controller
         return view('home.place_order_details', compact('user'));
     }
     public function confirm_order(Request $request) {
+        
         $user = User::find($request->user_id);
         $cartItems = $user->products;
         foreach($cartItems as $cartItem) {
-            dump($cartItem->product_id);
+            $order = new Order();
+            $order->quantity = $cartItem->quantity;
+            $order->user_id = $cartItem->user_id;
+            $order->product_id = $cartItem->product_id;
+            $order->delivery_status = 0;
+            if($request->payment_method == '4')
+                $order->payment_status = 0;
+            else
+                $order->payment_status = 1;
+            $order->save();
         }
+        return view('home.order_placed');
     }
 }
