@@ -48,6 +48,7 @@
       </div> -->
       <!-- jQery -->
       <script src="home/js/jquery-3.4.1.min.js"></script>
+      <script src="https://kit.fontawesome.com/42f8c3c6e9.js" crossorigin="anonymous"></script>
       <!-- popper js -->
       <script src="home/js/popper.min.js"></script>
       <!-- bootstrap js -->

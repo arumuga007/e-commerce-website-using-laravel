@@ -4,6 +4,7 @@
       <!-- Basic -->
       <meta charset="utf-8" />
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="csrf-token" content="{{ csrf_token() }}">
       <!-- Mobile Metas -->
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
       <!-- Site Metas -->
@@ -37,6 +38,7 @@
         }
         .product-details-right {
          width: 30%;
+         position: relative;
         }
         .details-img-container{
             overflow: hidden;
@@ -125,6 +127,36 @@
          
          color:black;
       }
+      .addcart-successful {
+         position: absolute;
+         background-color: black;
+         color: #1ABE4D;
+         text-align: center;
+         padding: 10px 20px;
+         border-radius: 5px;
+         bottom: 0;
+         opacity: 0;
+
+      }
+      .addcart-completed {
+         animation-name: show-success;
+         animation-duration: 5s;
+      }
+      @keyframes show-success {
+         0% {
+            opacity: 1;
+         }
+         10% {
+            bottom: 60px;
+         }
+         75% {
+            bottom: 60px;
+            opacity: 1;
+         }
+         90% {
+            opacity: 0;
+         }
+      }
     </style>
    <body>
       <div class="hero_area">
@@ -158,6 +190,9 @@
                   <div class="category-subcategory">
                      <span style="color: #FF9F00">{{$data->category}}</span>   ||   <span style="color: #FB641B;">{{$data->subcategory}}</span>
                   </div>
+                  <div class="addcart-successful" id='showsuccess'>
+                  <i class="fa-solid fa-circle-check"></i> product added to cart successfully
+                  </div>
             </div>
             <div class="product-details-rightmost">
                <div class="delivery-details">Free Delivery <i class="fas fa-shipping-fast"></i></div>
@@ -170,15 +205,18 @@
                </div>
                <div class="available-quantity">Available Quantity: <span>{{$data->quantity}}</span></div>
                <div class="product-quantity">
+                  <form method="post">
+                     @csrf
                   <span>Quantity: </span>
                   <input type=number value="1" min="1" onchange="checkQuantity()" class="quantity-input" id="quantity">
+                  </form>
                </div>
                <div class="details-btn-container">
-                  <a href="{{url('')}}" class="details-btn" style="background-color: #FF9F00;" onclick="preventExecute(event)" id="addcart">
+                  <button class="details-btn" style="background-color: #FF9F00;" onclick="addCarts(event)" id="addcart">
                      <i class="fa-solid fa-cart-shopping"></i>
                      Add to Cart 
-                  </a>
-                  <button class="details-btn buy-btn" style="background-color: #FB641B;" onclick="preventExecute(event)" id="buynow">
+                  </button>
+                  <button class="details-btn buy-btn" style="background-color: #FB641B;" onclick="buyNow(event)" id="buynow">
                   <i class="fas fa-bolt"></i>
                      Buy Now 
    </button>
@@ -208,9 +246,11 @@
          var inputChanged = false;
          let addCart = document.getElementById('addcart');
          let buynow = document.getElementById('buynow');
+         let quantity = document.getElementById('quantity');
+         let showSuccess = document.getElementById('showsuccess');
          function checkQuantity() {
-            let value = document.getElementById('quantity').value;
-            if(value > {{$data->quantity}}) {
+            values = quantity.value;
+            if(values > {{$data->quantity}}) {
                inputChanged = true;
                addCart.classList.add('prevent-execute');
                buynow.classList.add('prevent-execute');
@@ -221,18 +261,45 @@
                buynow.classList.remove('prevent-execute');
             }
          }
-         function preventExecute(event) {
-            if(inputChanged) {
+         function addCarts(event) {
+            if(inputChanged)
             event.preventDefault();
-               addCart.classList.add('prevent-execute');
-               buynow.classList.add('prevent-execute');
-            }
+
             else {
-               @auth
-                  console.log('called');
-               @else
-                  window.location.href = 'login';
-               @endauth
+            @auth
+               const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+               console.log(csrfToken);
+                Data = {
+                  quantity: parseInt(quantity.value),
+                  productId: {{$data->id}}
+                }
+                console.log(Data);
+                fetch('/api/addcart', {
+                  method: 'POST',
+                  headers: {
+                     'Content-Type': 'application/json',
+                     'X-CSRF-TOKEN': csrfToken
+                  },
+                  body: JSON.stringify(Data)
+                })
+                .then(response => {
+                  if(response.ok) {
+                     showSuccess.classList.remove('addcart-completed');
+                     void showSuccess.offsetWidth;
+                     showSuccess.classList.add('addcart-completed');
+
+                  }
+                  return response.json();
+                }
+                )
+                .then(data => {
+                  console.log(data);
+                })
+            @else
+               window.location.href = 'login';
+
+            @endauth
+
             }
          }
       </script>

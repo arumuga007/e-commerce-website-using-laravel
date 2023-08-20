@@ -45,6 +45,9 @@ Route::post('/add_subcategory', [AdminController::class, 'add_subcategory']);
 Route::post('/api/post-subcategory', [AdminController::class, 'post_subcategory']);
 Route::get('/api/get-products', [HomeController::class, 'getProducts']);
 Route::get('/product-details', [HomeController::class, 'productDetails']);
-
+Route::post('/api/addcart', [HomeController:: class, 'add_cart']);
+Route::get('/cart_products', [HomeController::class, 'cart_products']);
+Route::get('/place-order',[HomeController::class, 'place_order']);
+Route::post('/confirm_order', [HomeController::class, 'confirm_order']);
 
 

@@ -24,7 +24,7 @@
                            <a class="nav-link" href="blog_list.html">Blog</a>
                         </li>
                         <li class="nav-item">
-                           <a class="nav-link" href="contact.html">Contact</a>
+                           <a class="nav-link" href="{{url('cart_products')}}"><i class="fa-solid fa-cart-shopping"></i></a>
                         </li>
                         <form class="form-inline">
                            <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
