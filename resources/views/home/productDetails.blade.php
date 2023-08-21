@@ -261,6 +261,17 @@
                buynow.classList.remove('prevent-execute');
             }
          }
+         const buyNow = (event) => {
+            if(inputChanged)
+               event.preventDefault;
+            else {
+               @auth
+                  window.location.href= "order-using-buynow?product_id={{$data->id}}";
+               @else
+                  window.location.href = 'login';
+               @endauth
+            }
+         }
          function addCarts(event) {
             if(inputChanged)
             event.preventDefault();

@@ -41,8 +41,15 @@ Route::get('/edit_product/{id}', [AdminController::class, 'edit_product'])->name
 Route::post('/modify_product/{id}', [AdminController::class, 'modify_product']);
 Route::get('/delete_product/{id}', [AdminController::class, 'delete_product']);
 Route::get('/view_subcategory', [AdminController::class, 'view_subcategory']);
+Route::get('/show_subcategory', [AdminController::class, 'show_subcategory']);
+Route::get('/delete_subcategory', [AdminController::class, 'delete_subcategory']);
+Route::get('/edit_subcategory', [AdminController::class, 'edit_subcategory']);
+
+
 Route::post('/add_subcategory', [AdminController::class, 'add_subcategory']);
 Route::post('/api/post-subcategory', [AdminController::class, 'post_subcategory']);
+Route::post('/api/submit-edit-subcategory', [AdminController::class, 'submit_edit_subcategory']);
+
 Route::get('/view_orders', [AdminController::class, 'view_orders']);
 Route::get('/updateDeliveryStatus', [AdminController::class, 'update_delivery']);
 
@@ -51,7 +58,12 @@ Route::get('/product-details', [HomeController::class, 'productDetails']);
 Route::get('/product-details/{id}', [HomeController::class, 'productDetails']);
 Route::post('/api/addcart', [HomeController:: class, 'add_cart']);
 Route::get('/cart_products', [HomeController::class, 'cart_products']);
+
+
 Route::get('/place-order',[HomeController::class, 'place_order']);
+Route::get('/order-using-buynow',[HomeController::class, 'orderUsingBuyNow']);
+Route::post('/api/update-user', [AdminController:: class, 'updateUser']);
+
 Route::post('/confirm_order', [HomeController::class, 'confirm_order']);
 Route::get('ordered_products',[HomeController::class, 'ordered_products']);
 

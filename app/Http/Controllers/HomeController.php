@@ -55,15 +55,25 @@ class HomeController extends Controller
     public function place_order() {
         $user = auth()->user();
         $cartItems = $user->products;
-        $data['price'] = 0;
-        $data['discount_price'] = 0;
+        $price = 0;
+        $discount_price = 0;
         foreach($cartItems as $cartItem) {
             $product = $cartItem->product;
-            $data['price'] += $product->price;
-            $data['discount_price'] += $product->discount_price;
+            $price += $product->price;
+            $discount_price += $product->discount_price;
         }
-        return view('home.place_order_details', compact('user'));
+        return view('home.place_order_details', compact('user','price','discount_price'));
     }
+
+    public function orderUsingBuyNow(Request $request) {
+        $user = auth()->user();
+        $product = product::find($request->product_id);
+        $price = $product->price;
+        $discount_price = $product->discount_price;
+        return view('home.place_order_details', compact('user', 'price', 'discount_price'));
+    }
+
+
     public function confirm_order(Request $request) {
         
         $user = User::find($request->user_id);

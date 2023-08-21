@@ -29,7 +29,7 @@
     display: flex;
     flex-direction: row;
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
     background-color: #F1F3F6;
     overflow: hidden;
 }
@@ -45,12 +45,12 @@
 .user-details-container {
     padding-left: 20px;
     border-radius: 10px;
-    height: 50%;
+    height: 65%;
     overflow: hidden;
     background-color: #F5FAFE;
     display: flex;
     flex-direction: column;
-    gap: 10%;
+    gap: 5%;
 }
 .upper-details {
     display:flex;
@@ -80,7 +80,7 @@
     margin-top: 10px;
     padding-left: 20px;
     border-radius: 10px;
-    height: 30%;
+    height: 40%;
     overflow: hidden;
     background-color: #F5FAFE;
     display: flex;
@@ -107,6 +107,7 @@
     display:inline-block;
 }
 .style-checkbox-value {
+    padding-bottom: 10px;
     margin-left: 5px;
 }
 .right-container {
@@ -156,9 +157,66 @@
     border: 1px solid white;
     border-radius: 5px;
 }
+.user-btn-container {
+    height: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-left: 70%;
+    gap:5%;
+}
+.user-btn {
+    padding: 7px 10px;
+    border-radius: 4px;
+    border: 1px solid;
+    border-color: rgba(0,0,0,.2);
+    cursor: pointer;
+
+}
+.user-cancel-btn {
+    background-color: white;
+}
+.user-success-btn {
+    background-color: #FF9F00;
+    padding: 7px 20px;
+}
+.addcart-successful {
+         position: fixed;
+         background-color: #454545;
+         color: #1ABE4D;
+         text-align: center;
+         padding: 10px 20px;
+         border-radius: 5px;
+         left: 45%;
+         top:4vh;
+         z-index: 100;
+         opacity: 0;
+      }
+      .addcart-completed {
+         animation-name: show-success;
+         animation-duration: 5s;
+      }
+      @keyframes show-success {
+         0% {
+            opacity: 1;
+         }
+         10% {
+            top:18vh;
+         }
+         75% {
+            top:18vh;
+            opacity: 1;
+         }
+         90% {
+            opacity: 0;
+         }
+      }
 </style>
 
    <body>
+   <div class="addcart-successful" id='showsuccess'>
+        <i class="fa-solid fa-circle-check"></i> Delivery Address Updated successfully
+    </div>
       <div class="hero_area">
          @include('home.header')
          <div class="containers">
@@ -171,18 +229,22 @@
                     <div class="upper-details">
                         <div class="field-container">
                         <div class="label">Phone No:</div>
-                        <input type=number value="{{intval($user->phone)}}" name="phoneno"  style="border-radius: 5px;">
+                        <input type=number value="{{intval($user->phone)}}" name="phoneno"  style="border-radius: 5px;" id='number'>
                         </div>
                         <div class="field-container">
                         <div class="label">Email:</div>
-                        <input type=email name="email"  style="border-radius: 5px;" value="{{$user->email}}">
+                        <input type=text name="email"  style="border-radius: 5px;" value="{{$user->email}}" id="email">
                         </div>
                     </div>
                     <div class="lower-details">
                         <div class="label">Address:</div>
-                        <input value="{{$user->address}}" name="address" style="width: 68%;" class="input-field">
+                        <input value="{{$user->address}}" name="address" style="width: 68%;" class="input-field" id='address'>
                     </div>
-
+                    
+                <div class="user-btn-container">
+                    <a class="user-cancel-btn user-btn">Cancel</a>
+                    <a class="user-success-btn user-btn" onclick="updateUser()">Save</a>
+                </div>
                     </div>
                 <div class="payment-details-container">
                 <div class="delivery-header">
@@ -191,18 +253,18 @@
                         <div class="payment-body">
                             <div class="payment-upper-container">
                             <div class="custom-checkbox">
-                            <input type="radio" name="payment_method" value="1"><span class="style-checkbox-value">UPI</span>
+                            <input type="radio" name="payment_method" value="1" style="margin-top: 16px;"><span class="style-checkbox-value">UPI</span>
                             </div>
                             <div class="custom-checkbox">
-                            <input type="radio" name="payment_method" value="2"><span class="style-checkbox-value">Net Banking</span>
+                            <input type="radio" name="payment_method" value="2" style="margin-top: 16px;"><span class="style-checkbox-value">Net Banking</span>
                             </div>
                             </div>
                             <div class="payment-lower-container">
                             <div class="custom-checkbox">
-                            <input type="radio" name="payment_method" value="3"><span class="style-checkbox-value">Credit / Debit / ATM Card</span>
+                            <input type="radio" name="payment_method" value="3" style="margin-top: 16px;"><span class="style-checkbox-value">Credit / Debit / ATM Card</span>
                             </div>
                             <div class="custom-checkbox">
-                            <input type="radio" name="payment_method" value="4"><span class="style-checkbox-value">Cash on Delivery</span>
+                            <input type="radio" name="payment_method" value="4" style="margin-top: 16px;"><span class="style-checkbox-value">Cash on Delivery</span>
                             </div>
                             </div>
                         </div>
@@ -213,11 +275,11 @@
                 <div class="fixed-right-container">
                 <div class="price-details-header">Price Details</div>
                 <div class="price-container">
-                <div class="price-element">Price <span>0</span></div>
-                <div class="price-element">Discount<span style="color: green;">Free</span></div>
-                <div class="price-element">Total Amount<span>0</span></div>
+                <div class="price-element">Price <span>₹{{$price}}</span></div>
+                <div class="price-element">Discount<span style="color: green;">-₹{{$discount_price}}</span></div>
+                <div class="price-element">Total Amount<span>₹{{$price - $discount_price}}</span></div>
                 <div class="price-element">
-                <a href="#" class="back-btn">Back</a>
+                <a href="/redirect" class="back-btn">Back</a>
                 <input type="submit" id="confirm-btn" value="Confirm">
                 </div>
                 </div>
@@ -226,7 +288,47 @@
             </div>
         </div>
 
+        <script>
+            let userBtn = document.getElementById('user-success-btn');
+            let phoneno = document.getElementById('number');
+            let email = document.getElementById('email');
+            let address = document.getElementById('address');
+            const updateUser = () => {
+                event.preventDefault();
+                console.log('called');
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    const Data = {
+            phoneno: phoneno.value,
+            email: email.value,
+            address: address.value
+    };
+    console.log(Data);
+    fetch('/api/update-user', {  // Corrected route name here
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': csrfToken
+        },
+        body: JSON.stringify(Data)
+    })
+    .then(response => {
+        if (response.ok) {
+                    return response.json();
+        }
+        return response.json();
+    })
+    .then(data => {
+        let showSuccess = document.getElementById('showsuccess');
+        showSuccess.classList.remove('addcart-completed');
+        void showSuccess.offsetWidth;
+        showSuccess.classList.add('addcart-completed');
+    })
+    .catch(error => {
+        console.error('Fetch error:', error);
+    });
 
+    }
+        </script>
 
 
 

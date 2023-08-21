@@ -8,9 +8,28 @@ use App\Models\Category;
 use App\Models\product;
 use App\Models\subcategory;
 use App\Models\Order;
+use App\Models\User;
 
 class AdminController extends Controller
 {
+
+    
+    public function updateUser(Request $request) {
+        $validatedData = $request->validate([
+            'phoneno' => 'required|string',
+            'email' => 'required|string',
+            'address' => 'required|string',
+        ]);
+        $userId =auth()->user()->id;
+        $user = User::find($userId);
+        $user->phone = $request['phoneno'];
+        $user->address = $request['address'];
+        $user->email = $request['email'];
+        $user->save();
+        return response()->json(['msg','updated successfully']);
+
+    }
+
     public function view_category() {
         $data = Category::all();
         return view('admin.category', compact('data'));
@@ -50,6 +69,34 @@ class AdminController extends Controller
         $data->save();
         return redirect()->back()->with('message',"The subcategory added successfully");
     }
+
+    public function show_subcategory() {
+        $subcategory = subcategory::all();
+        return view('admin.show_subcategory', compact('subcategory'));
+    }
+
+    public function delete_subcategory(Request $request) {
+        $subcategory = subcategory::find($request->subcategory_id);
+        $subcategory->delete();
+        $subcategories = subcategory::with('category')->get();
+        return response()->json(['msg', $subcategories]);
+    }
+
+    public function edit_subcategory(Request $request) {
+        $subcategory = subcategory::find($request->subcategory_id);
+        $categories = Category::all();
+        return view('admin.edit_subcategory', compact('subcategory', 'categories'));
+    }
+
+    public function submit_edit_subcategory(Request $request) {
+        $data = $request->json()->all();
+        $subcategory = subcategory::find($data['subcategoryId']);
+        $subcategory->category_id = $data['category'];
+        $subcategory->subcategory_name = $data['subcategory'];
+        $subcategory->save();
+        return response()->json(['message','everything perfect']);
+    }
+
     public function view_product() {
         $categories = Category::all();
         $subcategories = subcategory::all();

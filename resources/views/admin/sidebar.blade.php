@@ -88,13 +88,21 @@
             </a>
           </li>
           <li class="nav-item menu-items">
-            <a class="nav-link" href="{{url('view_subcategory')}}">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
               <span class="menu-icon">
-                <i class="mdi mdi-playlist-play"></i>
+                <i class="mdi mdi-laptop"></i>
               </span>
               <span class="menu-title">Sub Category</span>
+              <i class="menu-arrow"></i>
             </a>
-          </li><li class="nav-item menu-items">
+            <div class="collapse" id="ui-basic">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="{{url('view_subcategory')}}">Add SubCategory</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{url('show_subcategory')}}">Show SubCategory</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item menu-items">
             <a class="nav-link" href="{{url('view_orders')}}">
               <span class="menu-icon">
                 <i class="mdi mdi-playlist-play"></i>
