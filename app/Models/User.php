@@ -57,6 +57,9 @@ class User extends Authenticatable
         return $this->hasMany(Cart::class, 'user_id');
     }
 
+    public function order_products() {
+        return $this->hasMany(Order::class, 'user_id');
+    }
     /**
      * The accessors to append to the model's array form.
      *

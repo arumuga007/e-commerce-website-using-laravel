@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\product;
 use App\Models\subcategory;
+use App\Models\Order;
 
 class AdminController extends Controller
 {
@@ -120,5 +121,18 @@ class AdminController extends Controller
         $sub_category->category_id = $data['category'];
         $sub_category->save();
         return response()->json(['message' => $data['subcategory'].' added to subcategory list successfully']);
+    }
+
+    public function view_orders() {
+        $orderProducts = Order::all();
+        $orderItemGroup = $orderProducts->groupBy('product_id');
+        return view('admin.all_orders',compact('orderItemGroup'));
+    }
+
+    public function update_delivery(Request $request) {
+        $order = Order::find($request->order_id);
+        $order->delivery_status = 1;
+        $order->save();
+        return response()->json(['msg', "delivery status changed successfully"]);
     }
 }

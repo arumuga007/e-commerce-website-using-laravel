@@ -82,4 +82,10 @@ class HomeController extends Controller
         }
         return view('home.order_placed');
     }
+    public function ordered_products() {
+        $user = auth()->user();
+        $orderProducts = $user->order_products;
+        $orderItemGroup = $orderProducts->groupBy('product_id');
+        return view('home.ordered_products',compact('orderItemGroup'));
+    }
 }

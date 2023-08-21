@@ -8,7 +8,7 @@
                   <div class="collapse navbar-collapse" id="navbarSupportedContent" style="font-size:13px; margin-left:5vw;">
                      <ul class="navbar-nav">
                         <li class="nav-item">
-                           <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                           <a class="nav-link" href="{{url('/redirect')}}">Home <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item dropdown active">
                            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"> <span class="nav-label">Pages <span class="caret"></span></a>
@@ -21,7 +21,7 @@
                            <a class="nav-link" href="product.html">Products</a>
                         </li>
                         <li class="nav-item">
-                           <a class="nav-link" href="blog_list.html">Blog</a>
+                           <a class="nav-link" href="{{url('ordered_products')}}">Orders</a>
                         </li>
                         <li class="nav-item">
                            <a class="nav-link" href="{{url('cart_products')}}"><i class="fa-solid fa-cart-shopping"></i></a>

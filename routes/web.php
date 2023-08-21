@@ -43,11 +43,16 @@ Route::get('/delete_product/{id}', [AdminController::class, 'delete_product']);
 Route::get('/view_subcategory', [AdminController::class, 'view_subcategory']);
 Route::post('/add_subcategory', [AdminController::class, 'add_subcategory']);
 Route::post('/api/post-subcategory', [AdminController::class, 'post_subcategory']);
+Route::get('/view_orders', [AdminController::class, 'view_orders']);
+Route::get('/updateDeliveryStatus', [AdminController::class, 'update_delivery']);
+
 Route::get('/api/get-products', [HomeController::class, 'getProducts']);
 Route::get('/product-details', [HomeController::class, 'productDetails']);
+Route::get('/product-details/{id}', [HomeController::class, 'productDetails']);
 Route::post('/api/addcart', [HomeController:: class, 'add_cart']);
 Route::get('/cart_products', [HomeController::class, 'cart_products']);
 Route::get('/place-order',[HomeController::class, 'place_order']);
 Route::post('/confirm_order', [HomeController::class, 'confirm_order']);
+Route::get('ordered_products',[HomeController::class, 'ordered_products']);
 
 
