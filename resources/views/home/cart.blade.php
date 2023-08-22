@@ -35,22 +35,27 @@
     justify-content: space-around;
 }
 .cart-products {
-    background-color: #F1F3F6;
     width: 65%;
-
+    min-height: 100vh;
+    padding-top: 10px;
 }
 .cart-products {
     display:flex;
     flex-direction: column;
     overflow: hidden;
-    
+    gap: 2vh;
+    transition: all linear .5s;
 }
 .each-products {
     height: 200px;
     width: 100%;
     display:flex;
+    padding-top: 20px;
     flex-direction: row;
     gap: 3vw;
+    border-radius: 5px;
+    border: 1px solid;
+    border-color: rgba(0,0,0,0.1);
     background-color: #FFFFFF;
 }
 .cart-image {
@@ -162,7 +167,7 @@
 </style>
 <body>
     
-<div class="hero_area">
+<div class="hero_area" id="full-container">
         @include('home.header')
 
         @php
@@ -172,46 +177,7 @@
             $totalPrice = 0;
         @endphp
     <div class='cart-container'>
-    <div class='cart-products'>
-        @foreach ($cartItemsGroups as $productId => $cartItemsGroup)
-        
-        @foreach ($cartItemsGroup as $cartItem)
-        <div class='each-products'>
-            <img src="uploads/{{$cartItem->product->image}}" class="cart-image">
-            <div class="details-container">
-                @php
-                    $noOfItems++;
-                    $totalPrice += $cartItem->product->price;
-                    $discountPrice += $cartItem->product->discount_price;
-                    $totalAmount = $totalPrice - $discountPrice;
-                @endphp
-                <div class="details-header">{{$cartItem->product->title}}</div>
-                <div class="details-category">{{$cartItem->product->category}} || {{$cartItem->product->subcategory}}</div>
-                <div class="product-stock">
-                  @if($cartItem->product->quantity > 0)
-                     <div class="in-stock" style="color: green">In stock <i class="fa-solid fa-tag"></i></div>
-                  @else
-                     <div style="color: red;">Out of Stock</div>
-                  @endif
-               </div>
-               <div class="product-price">
-                  <span class="actual-price">₹{{$cartItem->product->price - $cartItem->product->discount_price}}</span>
-                  <span class="given-price">₹{{$cartItem->product->price}}</span>
-                  <span class="discount-price">{{floor($cartItem->product->discount_price * 100 / $cartItem->product->price)}}% off</span>
-
-               </div>
-               <div class="details-quantity-price"> 
-                    <input type=number value="{{$cartItem->quantity}}" class="quantity-field">
-                    <a href='#' class="remove-btn">Remove</a>
-                </div>
-            </div>
-            <div class="delivery-detail">Delivery by Sep 3 | 
-                <div style="color: green;"> Free <span class="cut-delivery">₹40</span></div>
-            </div>
-            </div>
-            @endforeach
-    
-@endforeach
+    <div class='cart-products' id="cart-products" >
     </div>
     <div class="price-details">
         <div class="price-header">
@@ -219,12 +185,12 @@
         </div>
         <div class="price-body">
         <div class="price-items">
-            <span>Price ({{$noOfItems}} Items)</span>
-            <span>₹{{$totalPrice}}</span>
+            <span id="items">Price ({{$noOfItems}} Items)</span>
+            <span id="price">₹{{$totalPrice}}</span>
         </div>
         <div class="price-items">
             <span>Discount</span>
-            <span style="color: green;">-₹{{$discountPrice}}</span>
+            <span style="color: green;" id="discount-price">-₹{{$discountPrice}}</span>
         </div>
         <div class="price-items">
             <span>Delivery Charges</span>
@@ -233,7 +199,7 @@
         
         <div class="total-amount price-items">
             <span> Total Amount</span>
-            <span class="price-span">₹{{$totalAmount}}</span>
+            <span class="price-span" id="total-price">₹{{$totalAmount}}</span>
         </div>
         </div>
         <div class="place-order-container">
@@ -242,6 +208,92 @@
     </div>
     </div>
     </div>
+
+    <script>
+        let removeBtn = document.getElementById('remove-item');
+        let container = document.getElementById('full-container');
+        let eachProduct = document.getElementById('cart-products');
+        let spanPrice = document.getElementById('price');
+        let spanDiscountPrice = document.getElementById('discount-price');
+        let spanTotalPrice = document.getElementById('total-price');
+        let spanItems = document.getElementById('items');
+        let noOfItem = 0, discountPrice = 0, totalPrice = 0;
+        let price = 0;
+        const removeItem = (cartItem) => {
+            fetch(`/api/remove-cartItem?cartItemId=${cartItem}`)
+            .then(response => {
+                return response.json();
+            })
+            .then(data => {
+                updateCart(data);
+            })
+            .catch(error => {
+                console.log('error occured', error);
+            })
+        }
+        const updateCart = datas => {
+            noOfItem = 0;
+            price = 0;
+            discountPrice = 0;
+            totalPrice = 0;
+            eachProduct.innerHTML = '';
+            datas.forEach(data => {
+            noOfItem++;
+            price += parseInt(data.product.price);
+            let discountPercent = Math.floor(data.product.discount_price * 100 / data.product.price)
+            let currentPrice = data.product.price - data.product.discount_price;
+            discountPrice += parseInt(data.product.discount_price);
+            eachProduct.innerHTML += `<div class='each-products' id='each-products'>
+            <img src="uploads/${data.product.image}" class="cart-image">
+            <div class="details-container">
+                <div class="details-header">${data.product.title}</div>
+                <div class="details-category">${data.product.category} || ${data.product.subcategory}</div>
+                <div class="product-stock">
+                  
+                    ${data.product.quantity > 0 ? '<div class="in-stock" style="color: green">In stock <i class="fa-solid fa-tag"></i></div>'
+                  :
+                     '<div style="color: red;">Out of Stock</div>' }
+               </div>
+               <div class="product-price">
+                  <span class="actual-price">₹${currentPrice}</span>
+                  <span class="given-price">₹${data.product.price}</span>
+                  <span class="discount-price">${discountPercent}% off</span>
+
+               </div>
+               <div class="details-quantity-price"> 
+                    <input type=number value="${data.quantity}" class="quantity-field" onchange="updateQuantity(${data.id})" id="quantity">
+                    <a href='#' class="remove-btn" id="remove-item" onclick="removeItem(${data.id})">Remove</a>
+                </div>
+            </div>
+            <div class="delivery-detail">Delivery by Sep 3
+                <div style="color: green;"> Free <span class="cut-delivery">₹40</span></div>
+            </div>
+            </div>
+            </div>`;
+                    })
+            console.log(price);
+            spanPrice.innerHTML = `${price}`;
+            spanDiscountPrice.innerHTML = `${discountPrice}`;
+            spanTotalPrice.innerHTML = `${price - discountPrice}`;
+            spanItems.innerHTML = `Price(${noOfItem} Items)`;
+            
+
+        }
+        const updateQuantity = (id) => {
+            let quantity = document.getElementById('quantity').value;
+            fetch(`/api/updateQuantity?id=${id}&quantity=${quantity}`)
+            .then(response => {
+                if(response.ok)
+                console.log(response.json());
+            })
+            .catch(error => {
+                console.log('error occured during execution \n error:', error);
+            })
+
+        }
+        removeItem(0);
+    </script>
+
     <script src="home/js/jquery-3.4.1.min.js"></script>
       <script src="https://kit.fontawesome.com/42f8c3c6e9.js" crossorigin="anonymous"></script>
       <!-- popper js -->

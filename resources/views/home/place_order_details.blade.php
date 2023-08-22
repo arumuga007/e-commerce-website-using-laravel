@@ -252,19 +252,19 @@
                         </div>
                         <div class="payment-body">
                             <div class="payment-upper-container">
-                            <div class="custom-checkbox">
-                            <input type="radio" name="payment_method" value="1" style="margin-top: 16px;"><span class="style-checkbox-value">UPI</span>
+                                <div class="custom-checkbox">
+                                <input type="radio" name="payment_method" value="1" style="margin-top: 16px;"><span class="style-checkbox-value">UPI</span>
                             </div>
                             <div class="custom-checkbox">
-                            <input type="radio" name="payment_method" value="2" style="margin-top: 16px;"><span class="style-checkbox-value">Net Banking</span>
+                                <input type="radio" name="payment_method" value="2" style="margin-top: 16px;"><span class="style-checkbox-value">Net Banking</span>
                             </div>
                             </div>
                             <div class="payment-lower-container">
                             <div class="custom-checkbox">
-                            <input type="radio" name="payment_method" value="3" style="margin-top: 16px;"><span class="style-checkbox-value">Credit / Debit / ATM Card</span>
+                                <input type="radio" name="payment_method" value="3" style="margin-top: 16px;"><span class="style-checkbox-value">Credit / Debit / ATM Card</span>
                             </div>
                             <div class="custom-checkbox">
-                            <input type="radio" name="payment_method" value="4" style="margin-top: 16px;"><span class="style-checkbox-value">Cash on Delivery</span>
+                                <input type="radio" name="payment_method" value="4" style="margin-top: 16px;"><span class="style-checkbox-value">Cash on Delivery</span>
                             </div>
                             </div>
                         </div>
@@ -273,18 +273,18 @@
             </div>
             <div class="right-container">
                 <div class="fixed-right-container">
-                <div class="price-details-header">Price Details</div>
-                <div class="price-container">
-                <div class="price-element">Price <span>₹{{$price}}</span></div>
-                <div class="price-element">Discount<span style="color: green;">-₹{{$discount_price}}</span></div>
-                <div class="price-element">Total Amount<span>₹{{$price - $discount_price}}</span></div>
-                <div class="price-element">
-                <a href="/redirect" class="back-btn">Back</a>
-                <input type="submit" id="confirm-btn" value="Confirm">
-                </div>
-                </div>
-                </div>
-</form>
+                    <div class="price-details-header">Price Details</div>
+                        <div class="price-container">
+                            <div class="price-element">Price <span>₹{{$price}}</span></div>
+                            <div class="price-element">Discount<span style="color: green;">-₹{{$discount_price}}</span></div>
+                            <div class="price-element">Total Amount<span>₹{{$price - $discount_price}}</span></div>
+                            <div class="price-element">
+                            <a href="/redirect" class="back-btn">Back</a>
+                            <input type="submit" id="confirm-btn" value="Confirm">
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
 

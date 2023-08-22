@@ -266,7 +266,7 @@
                event.preventDefault;
             else {
                @auth
-                  window.location.href= "order-using-buynow?product_id={{$data->id}}";
+                  window.location.href= `order-using-buynow?product_id={{$data->id}}&quantity=${quantity.value}`;
                @else
                   window.location.href = 'login';
                @endauth

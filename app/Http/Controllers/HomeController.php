@@ -70,7 +70,9 @@ class HomeController extends Controller
         $product = product::find($request->product_id);
         $price = $product->price;
         $discount_price = $product->discount_price;
-        return view('home.place_order_details', compact('user', 'price', 'discount_price'));
+        $product_id = $request->product_id;
+        $quantity = $request->quantity;
+        return view('home.place_order_buynow', compact('user', 'price', 'discount_price', 'product_id', 'quantity'));
     }
 
 
@@ -92,6 +94,44 @@ class HomeController extends Controller
         }
         return view('home.order_placed');
     }
+
+    public function confirmOrderBuynow(Request $request) {
+        $order = new Order();
+        $order->quantity = $request->quantity;
+        $order->product_id = $request->product_id;
+        $order->user_id = $request->user_id;
+        $order->delivery_status = 0;
+        if($request->payment_method == '4')
+                $order->payment_status = 0;
+            else
+                $order->payment_status = 1;
+            $order->save();
+            return view('home.order_placed');
+    }
+
+    public function removeCartItem(Request $request) {
+        $userId = auth()->user()->id;
+        $cartItemId = $request->cartItemId;
+        if($cartItemId != 0) {
+        $removableItem = Cart::find($cartItemId);
+        $removableItem->delete();
+
+        }
+        $cartItems = Cart::where('user_id', $userId)
+        ->with('product')
+        ->get();
+        return response()->json($cartItems);
+    }
+
+    public function updateQuantity(Request $request) {
+        $quantity = $request->quantity;
+        $cartId = $request->id;
+        $item = Cart::find($cartId);
+        $item->quantity = $quantity;
+        $item->save();
+        return response()->json(['msg', 'successful']);
+    }
+
     public function ordered_products() {
         $user = auth()->user();
         $orderProducts = $user->order_products;

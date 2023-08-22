@@ -58,6 +58,8 @@ Route::get('/product-details', [HomeController::class, 'productDetails']);
 Route::get('/product-details/{id}', [HomeController::class, 'productDetails']);
 Route::post('/api/addcart', [HomeController:: class, 'add_cart']);
 Route::get('/cart_products', [HomeController::class, 'cart_products']);
+Route::get('/api/remove-cartItem', [HomeController::class, 'RemoveCartItem']);
+Route::get('/api/updateQuantity', [HomeController::class, 'updateQuantity']);
 
 
 Route::get('/place-order',[HomeController::class, 'place_order']);
@@ -65,6 +67,5 @@ Route::get('/order-using-buynow',[HomeController::class, 'orderUsingBuyNow']);
 Route::post('/api/update-user', [AdminController:: class, 'updateUser']);
 
 Route::post('/confirm_order', [HomeController::class, 'confirm_order']);
+Route::post('/confirm_order_buynow', [HomeController::class, 'confirmOrderBuynow']);
 Route::get('ordered_products',[HomeController::class, 'ordered_products']);
-
-
