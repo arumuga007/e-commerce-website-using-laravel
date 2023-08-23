@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-app-layout style="z-index: 999;background-color: red;">
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Dashboard') }}

@@ -16,6 +16,7 @@
       <title>Famms - Fashion HTML Template</title>
       <!-- bootstrap core css -->
       <link rel="stylesheet" type="text/css" href="home/css/bootstrap.css" />
+      <link href="home/css/stylehome.css" rel="stylesheet" />
       <!-- font awesome style -->
       <link href="home/css/font-awesome.min.css" rel="stylesheet" />
       <!-- Custom styles for this template -->
@@ -30,6 +31,13 @@
     </div>
     <script src="home/js/jquery-3.4.1.min.js"></script>
       <script src="https://kit.fontawesome.com/42f8c3c6e9.js" crossorigin="anonymous"></script>
+      <script>
+      function profileInformation() {
+                let profile = document.getElementById('profile-info');
+                profile.classList.toggle('show-profile-info');
+            }
+
+      </script>
       <!-- popper js -->
       <script src="home/js/popper.min.js"></script>
       <!-- bootstrap js -->

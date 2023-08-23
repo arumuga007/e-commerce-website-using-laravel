@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 
@@ -13,7 +14,10 @@ use App\Models\User;
 class AdminController extends Controller
 {
 
-    
+    public function logout() {
+        Auth::logout();
+        return view('home.userpage');
+    }
     public function updateUser(Request $request) {
         $validatedData = $request->validate([
             'phoneno' => 'required|string',

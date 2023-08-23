@@ -9,9 +9,11 @@
         <i class="menu-icon animate-text" onclick="getMenu()">Menu</i>
       </label>
       <nav class="menu-items hide">
-        <a class="item1 animate-text" style="position: relative;color: black;" href="{{url('/redirect')}}">Home</a>
-        <a class="item2 animate-text">Services</a>
-        <a class="item3 animate-text">Products</a>
+        <div class="search-product-container animate-text">
+          <div class="search-icon" id="search-product-btn" onclick="getProductsUsingSearch()"><i class="fa fa-search" aria-hidden="true"></i></div>
+          <input type="text" required class="search-products" placeholder="search for Products, Brands and More" id="search-product-input" >
+        </div>
+        <a class="item3 animate-text" id="home-product-head">Products</a>
         <a class="item4 animate-text" href="{{url('ordered_products')}}" style="color:black;">Orders</a>
         <a class="item5 animate-text" href="{{url('cart_products')}}" style="color:black;"><i class="fa-solid fa-cart-shopping"></i></a>
         @auth

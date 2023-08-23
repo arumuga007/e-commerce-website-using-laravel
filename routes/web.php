@@ -27,7 +27,7 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
-
+Route::get('/log-out', [AdminController::class, 'logout']);
 Route::get('/redirect', [HomeController::class, 'redirect']);
 Route::get('/view_category', [AdminController::class, 'view_category']);
 Route::post('/add_category', [AdminController::class, 'add_category']);
@@ -70,3 +70,6 @@ Route::post('/confirm_order', [HomeController::class, 'confirm_order']);
 Route::post('/confirm_order_buynow', [HomeController::class, 'confirmOrderBuynow']);
 Route::get('ordered_products',[HomeController::class, 'ordered_products']);
 Route::get('/api/cancel-order', [HomeController::class, 'cancelOrder']);
+
+
+Route::get('api/getproducts-using-search',[HomeController::class, 'getProductsUsingSearch']);

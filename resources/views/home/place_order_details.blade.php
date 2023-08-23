@@ -16,6 +16,7 @@
       <title>Famms - Fashion HTML Template</title>
       <!-- bootstrap core css -->
       <link rel="stylesheet" type="text/css" href="home/css/bootstrap.css" />
+      <link href="home/css/stylehome.css" rel="stylesheet" />
       <!-- font awesome style -->
       <link href="home/css/font-awesome.min.css" rel="stylesheet" />
       <!-- Custom styles for this template -->
@@ -25,7 +26,7 @@
    </head>
 <style>
 
-.containers {
+.containerss {
     display: flex;
     flex-direction: row;
     width: 100vw;
@@ -45,7 +46,7 @@
 .user-details-container {
     padding-left: 20px;
     border-radius: 10px;
-    height: 65%;
+    height: 70%;
     overflow: hidden;
     background-color: #F5FAFE;
     display: flex;
@@ -80,7 +81,7 @@
     margin-top: 10px;
     padding-left: 20px;
     border-radius: 10px;
-    height: 40%;
+    height: 35%;
     overflow: hidden;
     background-color: #F5FAFE;
     display: flex;
@@ -211,6 +212,10 @@
             opacity: 0;
          }
       }
+      .payment-container-upper {
+        display:flex;
+         flex-direction:row;
+      }
 </style>
 
    <body>
@@ -218,8 +223,8 @@
         <i class="fa-solid fa-circle-check"></i> Delivery Address Updated successfully
     </div>
       <div class="hero_area">
-         @include('home.header')
-         <div class="containers">
+        @include('home.header')
+         <div class="containerss">
             <form method="post" action="confirm_order" style="width: 100%;height:auto;">
             @csrf
             <input type="text" value="{{$user->id}}" style="display: none" name="user_id">
@@ -250,22 +255,21 @@
                 <div class="delivery-header">
                             Payment Options
                         </div>
-                        <div class="payment-body">
-                            <div class="payment-upper-container">
-                                <div class="custom-checkbox">
-                                <input type="radio" name="payment_method" value="1" style="margin-top: 16px;"><span class="style-checkbox-value">UPI</span>
+                        <div  class="payment-container-upper">
+                            <div class="each-payment-options" style="display: inline-block;display:flex; flex-direction:row;width: 10%;justify-content:center;">
+                                <input type="radio" name="payment_method" value="1" style="margin-left:25px;margin-top: 5px;"><span>UPI</span>
                             </div>
-                            <div class="custom-checkbox">
-                                <input type="radio" name="payment_method" value="2" style="margin-top: 16px;"><span class="style-checkbox-value">Net Banking</span>
+                            
+                            <div class="each-payment-options" style="display: inline-block;display:flex; flex-direction:row;width: 20%;justify-content:center;">
+                                <input type="radio" name="payment_method" value="1" style="margin-left:25px;margin-top: 5px;"><span>NetBanking</span>
                             </div>
                             </div>
-                            <div class="payment-lower-container">
-                            <div class="custom-checkbox">
-                                <input type="radio" name="payment_method" value="3" style="margin-top: 16px;"><span class="style-checkbox-value">Credit / Debit / ATM Card</span>
+                            <div class="payment-container-upper">
+                            <div class="each-payment-options" style="display: inline-block;display:flex; flex-direction:row;width: 27%;justify-content:center;">
+                                <input type="radio" name="payment_method" value="1" style="margin-left:25px;margin-top: 5px;"><span>Credit/DebitCard</span>
                             </div>
-                            <div class="custom-checkbox">
-                                <input type="radio" name="payment_method" value="4" style="margin-top: 16px;"><span class="style-checkbox-value">Cash on Delivery</span>
-                            </div>
+                            <div class="each-payment-options" style="display: inline-block;display:flex; flex-direction:row;width: 20%;justify-content:center;">
+                                <input type="radio" name="payment_method" value="1" style="margin-left:25px;margin-top: 5px;"><p>CashOnDelivery</p>
                             </div>
                         </div>
                     </div>
@@ -279,7 +283,7 @@
                             <div class="price-element">Discount<span style="color: green;">-₹{{$discount_price}}</span></div>
                             <div class="price-element">Total Amount<span>₹{{$price - $discount_price}}</span></div>
                             <div class="price-element">
-                            <a href="/redirect" class="back-btn">Back</a>
+                            <a href="/redirect" class="back-btn" style="color: black;">Back</a>
                             <input type="submit" id="confirm-btn" value="Confirm">
                             </div>
                         </div>
@@ -293,6 +297,10 @@
             let phoneno = document.getElementById('number');
             let email = document.getElementById('email');
             let address = document.getElementById('address');
+            function profileInformation() {
+                let profile = document.getElementById('profile-info');
+                profile.classList.toggle('show-profile-info');
+            }
             const updateUser = () => {
                 event.preventDefault();
                 console.log('called');

@@ -1,7 +1,7 @@
 <section class="product_section layout_padding">
          <div class="container">
-            <div class="heading_container heading_center">
-               <h2>
+            <div class="heading_container heading_center" id="home-product-place">
+               <h2 style="font-size: 2em;">
                   Our <span>products</span>
                </h2>
             </div>
@@ -17,7 +17,8 @@
          let hasMoreData = false;
          let offset = 0;
          let limit = 3;
-         function loadMoreProducts() {
+         let eventFlag = 0;
+   function loadMoreProducts() {
     if (loading || hasMoreData) {
         return;
     }
@@ -27,6 +28,10 @@
     fetch(`api/get-products?offset=${offset}&limit=${limit}`)
         .then(response => response.json())
         .then(data => {
+            if(eventFlag == 0) {
+               window.addEventListener('scroll', loadMore);
+               eventFlag = 1;
+            }
             if (data.length > 0) {
                 data.forEach(product => {
                   const encodedData = encodeURIComponent(JSON.stringify(product));
@@ -59,16 +64,14 @@
             loading = false;
         });
 }
-
-window.addEventListener('scroll', () => {
-    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 10) {
-      
-        loadMoreProducts();
-    }
-});
 function nothing(encodedProduct) {
    const decodedProduct = JSON.parse(decodeURIComponent(encodedProduct));
       window.location.href =  `/product-details?product_id=${decodedProduct.id}`;
 }
 loadMoreProducts();
+function loadMore() {
+   if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 10) { 
+      loadMoreProducts();
+   }
+   }
       </script>

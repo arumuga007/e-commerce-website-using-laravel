@@ -17,6 +17,12 @@
         <!-- Styles -->
         @livewireStyles
     </head>
+    <style>
+        .x-jet-dropdown {
+            z-index: 1000;
+        }
+    </style>
+
     <body class="font-sans antialiased">
         <x-banner />
 

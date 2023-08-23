@@ -15,6 +15,7 @@
       <title>Famms - Fashion HTML Template</title>
       <!-- bootstrap core css -->
       <link rel="stylesheet" type="text/css" href="home/css/bootstrap.css" />
+      <link href="home/css/stylehome.css" rel="stylesheet" />
       <!-- font awesome style -->
       <link href="home/css/font-awesome.min.css" rel="stylesheet" />
       <!-- Custom styles for this template -->
@@ -248,6 +249,10 @@
          let buynow = document.getElementById('buynow');
          let quantity = document.getElementById('quantity');
          let showSuccess = document.getElementById('showsuccess');
+         function profileInformation() {
+         let profile = document.getElementById('profile-info');
+         profile.classList.toggle('show-profile-info');
+         }
          function checkQuantity() {
             values = quantity.value;
             if(values > {{$data->quantity}}) {

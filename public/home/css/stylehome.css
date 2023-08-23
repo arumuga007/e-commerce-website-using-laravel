@@ -1,0 +1,498 @@
+/* Google Fonts - Poppins */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+body {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: 'REM', sans-serif;
+  transition: all linear 0.2s;
+}
+.profile-info {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 15px 20px;
+  border-radius: 4px;
+  border: 1px solid;
+  border-color: rgba(0, 0, 0, 0.1);
+  font-size: 1.2em;
+  top: 75px;
+  right: 50px;
+  z-index: 999;
+  text-align: center;
+  opacity: 0;
+  transition: all linear .2s;
+}
+.profile-info a {
+  color: white;
+  transition: all linear .3s;
+}
+.profile-info a:hover {
+  color: green;
+}
+.show-profile-info {
+  opacity: 1;
+}
+.containers {
+  min-height: 110vh;
+  width: 100vw;
+  overflow: hidden;
+}
+.header {
+  height: 60px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color:white;
+  color: black;
+  overflow: hidden;
+}
+.logo-and-name {
+  display: flex;
+  flex-direction: row;
+  width: 20%;
+  justify-content: center;
+  font-family: 'REM';
+  font-weight: 900;
+  font-size: 2em;
+  transition: all linear 0.2s;
+}
+.menu-items {
+  display: flex;
+  color: black;
+  flex-direction: row;
+  width: 70%;
+  justify-content: center;
+  font-size: 1.2em;
+  font-weight: 450;
+  gap: 6%;
+  transition: linear all 0.1s;
+}
+.logo {
+  background-image: url('logo1.jpg');
+  position: relative;
+  bottom: 0.9vh;
+  width: 20%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  
+}
+.item1::before {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width:100%;
+  height: 3px;
+  border-radius: 2px;
+  background-color: #75AC41;
+}
+.item6 {
+  background-color: white;
+  border: 1px solid;
+  border-color: rgba(0, 0, 0, 0.4);
+  color: black;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 4px;
+}
+.item7 {
+  background-color: white;
+  color: black;
+  border: 1px solid;
+  border-color: rgba(0, 0, 0, 0.4);
+
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 2px;
+  border-radius: 4px;
+}
+.animate-text {
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out forwards;
+}
+.animated {
+  animation: fadeIn 1s;
+  animation-delay: .3s;
+  animation-fill-mode:forwards;
+}
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+.show {
+  left:0;
+}
+.menu-icon {
+  display: none;
+  transition: all linear 0.1s;
+}
+.main {
+  height: 90vh;
+  width: 100%;
+  overflow: hidden;
+}
+.wrapper,
+.slide {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.slide {
+  overflow: hidden;
+}
+.slide::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.slide .image {
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  object-fit: cover;
+}
+.slide .image-data {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 100%;
+}
+.image-data span.text {
+  font-size: 14px;
+  font-weight: 400;
+  color: #fff;
+}
+.image-data h2 {
+  font-size: 45px;
+  font-weight: 600;
+  color: #fff;
+}
+a.button {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 25px;
+  color: #333;
+  background: #278233;
+  text-decoration: none;
+  margin-top: 25px;
+  transition: all 0.3s ease;
+}
+a.button:hover {
+  color: #fff;
+  background-color: #c87e4f;
+}
+
+/* swiper button css */
+.nav-btn {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+}
+.nav-btn:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+.swiper-button-next {
+  right: 50px;
+}
+.swiper-button-prev {
+  left: 50px;
+}
+.custom-login {
+  z-index: 999999;
+}
+.nav-btn::before,
+.nav-btn::after {
+  font-size: 25px;
+  color: #fff;
+}
+.swiper-pagination-bullet {
+  opacity: 1;
+  height: 12px;
+  width: 12px;
+  background-color: #fff;
+  visibility: hidden;
+}
+.swiper-pagination-bullet-active {
+  border: 2px solid #fff;
+  background-color: #c87e4f;
+}
+.intro {
+  height: 20vh;
+  width: 100vw;
+  position: relative;
+  padding: 0;
+  margin: 0;
+}
+.float-shape {
+  position: absolute;
+  height: 100px;
+  width: 100px;
+  background-color: aqua;
+  top: 0;
+}
+.intro-head {
+  position: absolute;
+  left: 20px;
+  top: 30px;
+  opacity: 0;
+  
+}
+.line-above::before {
+  content: "";
+  position: absolute;
+  top: -7px;
+  left: 0;
+  width:50%;
+  height: 5px;
+  border-radius: 2px;
+  background-color: #75AC41;
+}
+
+.intro-content {
+  height: 80vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+  max-width: 100%;
+}
+.img-container {
+  display: flex;
+  flex-direction: row;
+  height: 70vh;
+  justify-content: center;
+  gap: 2vw;
+  width: 50%;
+  margin-right: 2vw;
+  overflow: hidden;
+}
+.about-foodlab {
+  width: 40%;
+  margin-right: 5%;
+  margin-top: 10vh;
+  margin-bottom: auto;
+  font-size: 1.2em;
+  font-weight: 600;
+  opacity: 0;
+}
+.left-img {
+  display: flex;
+  flex-direction: column;
+  
+  gap: 5vh;
+  overflow: hidden;
+}
+.left-img1 {
+  height: 45%;
+  border-radius: 10px;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+}
+.right-img {
+  height: 100%;
+  width: 30%;
+}
+.right-img1 {
+  height: 98%;
+  border-radius: 10px;
+  width: 98%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+}
+
+.footer {
+  height: 60vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  font-size: 1.1em;
+  font-weight: 400;
+}
+.footer-contact {
+  width: 30%;
+  height: 100%;
+  padding-top: 7vh;
+  padding-left: 1vw;
+  position: relative;
+  
+}
+.contact-headings {
+  font-size: 1.2em;
+  font-weight: 500;
+}
+.footer-info {
+  background-color: #F4EEA9;
+  width: 70%;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.useful-info {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  opacity: 0;
+}
+.footer-copyright {
+  text-align: center;
+  opacity: 0;
+}
+.shape-on-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 100px;
+  width: 100px;
+  border-top-right-radius: 70px;
+  background-color: aqua;
+}
+.animate-text:hover {
+  cursor: pointer;
+}
+@media screen and (max-width: 1110px) {
+  body {
+    font-size: 0.9em; /* Decrease font size for mobile devices */
+  }
+  .logo-and-name {
+    font-size: 1.7em;
+  }
+}
+@media screen and (max-width:800px) {
+.menu-items {
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  position: fixed;
+  top: 10vh;
+  width: 100%;
+  height: 100vh;
+  text-align: center;
+  background: rgba(00, 00, 00, 0.5);
+  z-index: 10;
+  transition: all linear 0.2s;
+}
+.hide {
+  left: -100%;
+}
+.logo-and-name {
+  width: 50%; 
+}
+.menu-icon {
+  display: inline-block;
+  margin-right: 5px;
+  font-size: 1.7em;
+  font-weight: 500;
+}
+.nav-btn {
+  visibility: hidden;
+}
+.swiper-pagination-bullet {
+  visibility: visible;
+}
+.intro-head {
+  left: 0px;
+}
+.intro-content {
+  flex-direction: column;
+  height: auto;
+}
+.img-container {
+  width: 100%;
+}
+.about-foodlab {
+  width: auto;
+  text-align: center;
+  margin-top: auto;
+}
+}
+@media screen and (max-width:500px) {
+  .img-container {
+    flex-direction: column;
+    height: auto;
+    margin-right: 0px;
+    gap: 5vh;
+  }
+  .left-img {
+    width: auto;
+    height: auto;
+  }
+  .left-img1 {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .right-img {
+    height: 0px;
+  }
+  .footer {
+    flex-direction: column;
+  }
+  .footer-contact {
+    width: 100vw;
+    height: 20vh;
+  }
+  .footer-info {
+    width: 100vw;
+    height: 50vh;
+  }
+  .shape-on-footer {
+    right:0;
+    left: auto;
+    border-top-left-radius: 70px;
+    border-top-right-radius: 0px;
+  }
+  .useful-info, .footer-copyright {
+    opacity: 1;
+  }
+}
+.product-search {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  justify-content: center;
+
+}
+.search-product-container {
+  padding-left: 5px;
+  width: 45%;
+  display: flex;
+  flex-direction: row;
+  gap: 1vw;
+  background-color: #F0F5FF;
+  height: 100%;
+  align-items: center;
+}
+.search-product-container input {
+ border-color: transparent; 
+ width: 90%;
+ height: 100%;
+ background-color: inherit;
+ padding: 5px 0px;
+ outline: none;
+ font-size: .7em;
+}
+.search-products:focus {
+  border-color: transparent;
+}

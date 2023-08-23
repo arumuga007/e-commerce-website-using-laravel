@@ -16,6 +16,7 @@
       <title>Famms - Fashion HTML Template</title>
       <!-- bootstrap core css -->
       <link rel="stylesheet" type="text/css" href="home/css/bootstrap.css" />
+      <link href="home/css/stylehome.css" rel="stylesheet" />
       <!-- font awesome style -->
       <link href="home/css/font-awesome.min.css" rel="stylesheet" />
       <!-- Custom styles for this template -->
@@ -203,7 +204,7 @@
         </div>
         </div>
         <div class="place-order-container">
-        <a href='{{"/place-order"}}' class="place-order-btn">Place Order</a>
+        <a href='{{"/place-order"}}' class="place-order-btn" style="color: white;">Place Order</a>
         </div>
     </div>
     </div>
@@ -243,6 +244,11 @@
             let discountPercent = Math.floor(data.product.discount_price * 100 / data.product.price)
             let currentPrice = data.product.price - data.product.discount_price;
             discountPrice += parseInt(data.product.discount_price);
+            
+            function profileInformation() {
+                let profile = document.getElementById('profile-info');
+                profile.classList.toggle('show-profile-info');
+            }
             eachProduct.innerHTML += `<div class='each-products' id='each-products'>
             <img src="uploads/${data.product.image}" class="cart-image">
             <div class="details-container">
@@ -262,7 +268,7 @@
                </div>
                <div class="details-quantity-price"> 
                     <input type=number value="${data.quantity}" class="quantity-field" onchange="updateQuantity(${data.id}, ${data.product.quantity})" id="quantity" min=1>
-                    <a href='#' class="remove-btn" id="remove-item" onclick="removeItem(${data.id})">Remove</a>
+                    <a href='#' class="remove-btn" id="remove-item" onclick="removeItem(${data.id})" style="color: black;">Remove</a>
                 </div>
             </div>
             <div class="delivery-detail">Delivery by Sep 3

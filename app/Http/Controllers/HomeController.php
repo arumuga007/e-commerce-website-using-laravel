@@ -145,4 +145,13 @@ class HomeController extends Controller
         $orderItem->delete();
         return response()->json(['msg', 'Order cancelled successfully']);
     }
+
+    public function getProductsUsingSearch(Request $request) {
+        $query = $request->searchValue;
+        $results = product::where('title', 'LIKE', "%$query%")
+            ->orWhere('category', 'LIKE', "%$query%")
+            ->orWhere('subcategory', 'LIKE', "%$query%")
+            ->get();
+        return response()->json(['result'=> $results]);
+    }
 }
