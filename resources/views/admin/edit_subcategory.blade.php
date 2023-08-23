@@ -165,7 +165,7 @@
 <body>
 
 <div class="addcart-successful" id='showsuccess'>
-                  <i class="fa-solid fa-circle-check"></i> Delivery status Updated successfully
+                  <i class="fa-solid fa-circle-check"></i> Subcategory Updated successfully
                   </div>
 <div class="container-scroller">
       <!-- partial:partials/_sidebar.html -->

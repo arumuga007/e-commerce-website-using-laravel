@@ -15,8 +15,17 @@ class HomeController extends Controller
 {
     public function redirect() {
         $usertype = Auth::user()->usertype;
-        if($usertype == 1)
-            return view('admin.home');
+        if($usertype == 1) {
+            $totalProduct = product::all()->count();
+            $totalUser = User::all()->count();
+            $totalOrders = Order::all()->count();
+            $totalRevenue = 0;
+            $orders = Order::all();
+            foreach($orders as $order)
+                $totalRevenue += $order->orderProduct->price - $order->orderProduct->discount_price;
+            return view('admin.home', compact('totalProduct', 'totalUser', 'totalOrders', 'totalRevenue'));
+
+        }
         else
             return view('home.userpage');
     }

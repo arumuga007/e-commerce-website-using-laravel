@@ -161,8 +161,8 @@
 <body style="position:relative;">
 
 <div class="addcart-successful" id='showsuccess'>
-                  <i class="fa-solid fa-circle-check"></i> Delivery status Updated successfully
-                  </div>
+    <i class="fa-solid fa-circle-check"></i> Delivery status Updated successfully
+</div>
 <div class="container-scroller">
       <!-- partial:partials/_sidebar.html -->
       @include('admin.sidebar')

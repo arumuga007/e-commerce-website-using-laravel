@@ -129,8 +129,42 @@
     font-size: 1.5em;
     transition: all linear 0.5s;
   }
+      .addcart-successful {
+         position: fixed;
+         background-color: black;
+         color: #1ABE4D;
+         text-align: center;
+         padding: 10px 20px;
+         border-radius: 5px;
+         left: 45%;
+         top:4vh;
+         z-index: 10;
+         opacity: 0;
+      }
+      .addcart-completed {
+         animation-name: show-success;
+         animation-duration: 5s;
+      }
+      @keyframes show-success {
+         0% {
+            opacity: 1;
+         }
+         10% {
+            top:18vh;
+         }
+         75% {
+            top:18vh;
+            opacity: 1;
+         }
+         90% {
+            opacity: 0;
+         }
+      }
 </style>
-<body>
+<body style="position: relative;">
+<div class="addcart-successful" id='showsuccess'>
+    <i class="fa-solid fa-circle-check"></i> Subcategory added successfully
+</div>
 <div class="container-scroller">
       <!-- partial:partials/_sidebar.html -->
       @include('admin.sidebar')
@@ -175,6 +209,7 @@
     @include('admin.script')
     <script>
       let message = document.getElementById('success-message');
+      let showSuccess = document.getElementById('showsuccess');
       let form = document.getElementById('subcategory_form').addEventListener('submit', (event) => {
         console.log('button clicked');
     event.preventDefault();
@@ -192,33 +227,17 @@
         body: JSON.stringify(Data)  // Corrected comma, removed semicolon
     })
     .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
+        if(response.ok) {
+          showSuccess.classList.remove('addcart-completed');
+          void showSuccess.offsetWidth;
+          showSuccess.classList.add('addcart-completed');
         }
-        return response.json();
-    })
-    .then(data => {
-        console.log(data);
-        message.style.opacity = '1';
-        message.innerHTML = data.message;
-        message.innerHTML += '<span type="button" id="close"><i class="fa fa-times" aria-hidden="true" id="close_dialog" onclick="closeMsg()"></i></span>';
         // Handle response data
     })
     .catch(error => {
         console.error('Fetch error:', error);
     });
 });
-    
-let closeDialog = document.getElementById('close_dialog');
-closeDialog.addEventListener('click', () => {
-      console.log('button clickeds');
-      message.style.opacity = '0';
-    })
-console.log("asss", closeDialog);
-function closeMsg() {
-  console.log('clicked');
-  message.style.opacity = '0';
-}
     </script>
     <script src="https://kit.fontawesome.com/42f8c3c6e9.js" crossorigin="anonymous"></script>
 

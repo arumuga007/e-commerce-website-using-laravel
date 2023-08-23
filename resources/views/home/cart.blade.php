@@ -220,6 +220,10 @@
         let spanItems = document.getElementById('items');
         let noOfItem = 0, discountPrice = 0, totalPrice = 0;
         let price = 0;
+        function profileInformation() {
+            let profile = document.getElementById('profile-info');
+            profile.classList.toggle('show-profile-info');
+        }
         const removeItem = (cartItem) => {
             fetch(`/api/remove-cartItem?cartItemId=${cartItem}`)
             .then(response => {
@@ -245,12 +249,8 @@
             let currentPrice = data.product.price - data.product.discount_price;
             discountPrice += parseInt(data.product.discount_price);
             
-            function profileInformation() {
-                let profile = document.getElementById('profile-info');
-                profile.classList.toggle('show-profile-info');
-            }
             eachProduct.innerHTML += `<div class='each-products' id='each-products'>
-            <img src="uploads/${data.product.image}" class="cart-image">
+            <a class="cart-image" href="{{url('product-details?product_id=${data.product.id}')}}"><img src="uploads/${data.product.image}" style="height: 100%; width: 100%;cursor: pointer"></a>
             <div class="details-container">
                 <div class="details-header">${data.product.title}</div>
                 <div class="details-category">${data.product.category} || ${data.product.subcategory}</div>

@@ -6,6 +6,31 @@
     <title>Admin-Category</title>
     @include('admin.style')
 </head>
+<style>
+.add-category-input {
+  background-color: black;
+  color: black;
+  outline: none;
+  border-radius: 4px;
+}
+.add-category-input:focus {
+  border: 2px solid;
+  border-color: red;
+}
+
+.add-category-btn {
+  color: white;
+  border-radius: 3px;
+}
+.show-category-table {
+  width: 60%;
+
+}
+.show-category-table td, .show-category-table tr, .show-category-table th {
+  border: 2px solid white;
+  padding: 18px 0px;
+}
+</style>
 <body>
 <div class="container-scroller">
       <!-- partial:partials/_sidebar.html -->
@@ -28,8 +53,8 @@
                 <div class="add-category-label">Add Category</div>
                 <form action="{{url('/add_category')}}" class="category-form" method="post">
                     @csrf
-                    <input type=text name="category_name" class="get-category" placeholder="Write a Category Name">
-                    <input type=submit name="add-category-btn" class="add-category-btn" value="Add Category" style="background-color: blue;">
+                    <input type=text name="category_name" class="add-category-input" placeholder="Write a Category Name" style="border-radius: 4px;background-color: inherit;color: white;margin-right: 10px;">
+                    <input type=submit name="add-category-btn" class="add-category-btn" value="Add Category" style="background-color: #00D25B;">
                 </form>
             </div>
             

@@ -64,7 +64,7 @@
           <div class="subctgry- container">
             <div class="subctgry-header">Subcategory Details</div>
             <hr color="red">
-            <div class="new-subctgry">+ Add New</div>
+            <div class="new-subctgry" onclick="addNew()">+ Add New</div>
             <table class="all-subctgry" id="subcat-table">
                 <tr class="category-header">
                 <th class="name-header">Name</th>
@@ -93,6 +93,9 @@
     @include('admin.script')
     <script src="https://kit.fontawesome.com/42f8c3c6e9.js" crossorigin="anonymous"></script>
     <script>
+        const addNew = () => {
+            window.location.href = '/view_subcategory';
+        }
         const deleteSubCategory = (subCategoryId) => {
             fetch(`delete_subcategory?subcategory_id=${subCategoryId}`)
             .then(response => {
