@@ -261,7 +261,7 @@
 
                </div>
                <div class="details-quantity-price"> 
-                    <input type=number value="${data.quantity}" class="quantity-field" onchange="updateQuantity(${data.id})" id="quantity">
+                    <input type=number value="${data.quantity}" class="quantity-field" onchange="updateQuantity(${data.id}, ${data.product.quantity})" id="quantity" min=1>
                     <a href='#' class="remove-btn" id="remove-item" onclick="removeItem(${data.id})">Remove</a>
                 </div>
             </div>
@@ -279,8 +279,9 @@
             
 
         }
-        const updateQuantity = (id) => {
+        const updateQuantity = (id, availableQuantity) => {
             let quantity = document.getElementById('quantity').value;
+            if(quantity <= availableQuantity) {
             fetch(`/api/updateQuantity?id=${id}&quantity=${quantity}`)
             .then(response => {
                 if(response.ok)
@@ -289,7 +290,7 @@
             .catch(error => {
                 console.log('error occured during execution \n error:', error);
             })
-
+            }
         }
         removeItem(0);
     </script>

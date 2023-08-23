@@ -138,4 +138,11 @@ class HomeController extends Controller
         $orderItemGroup = $orderProducts->groupBy('product_id');
         return view('home.ordered_products',compact('orderItemGroup'));
     }
+
+    public function CancelOrder(Request $request) {
+        $orderId = $request->orderId;
+        $orderItem = Order::find($orderId);
+        $orderItem->delete();
+        return response()->json(['msg', 'Order cancelled successfully']);
+    }
 }

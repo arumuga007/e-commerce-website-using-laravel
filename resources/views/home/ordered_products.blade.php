@@ -38,7 +38,6 @@
         display:flex;
         flex-direction: column;
         width: 70%;
-        padding-left: 30px;
         gap:1.5vh;
     }
     .order-header {
@@ -71,16 +70,18 @@
         justify-content: space-around;
         align-items: center;
         background-color: #FFFFFF;
-        height: 20vh;
+        height: 25vh;
         border: 1px solid;
         border-color: rgba(0,0,0,.1);
         border-radius: 4px;
         font-weight: 500;
     }
     .product-image {
-        height: 80%;
+        height: 100%;
         width: 20%;
         border-radius: 5px;
+        display:flex;
+        align-items: center;
         cursor:pointer;
     }
     .order-details-container {
@@ -102,7 +103,7 @@
     .order-delivery-status {
         display: flex;
         flex-direction: column;
-        gap: 2vh;
+        gap: 1vh;
         min-width: 30%;
     }
     .filter-header {
@@ -126,9 +127,73 @@
     .filter-options {
         cursor: pointer;
     }
+    .cancel-order {
+        text-align: center;
+        cursor: pointer;
+        transition: all linear .2s;
+        width: 60%;
+        padding: 3px 10px;
+        background-color: white;
+        border: 1px solid;
+        border-color: rgba(0,0,0,.1);
+        margin-left: 10px;
+        border-radius: 5px;
+    }
+    .cancel-order:hover {
+        background-color: red;
+        color: white;
+    }
+    .rate-review {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        cursor: pointer;
+    }
+    .popup {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        width: 100vw;
+    }
+      .addcart-successful {
+         position: absolute;
+         background-color: black;
+         color: #1ABE4D;
+         text-align: center;
+         padding: 10px 20px;
+         border-radius: 5px;
+         top: -50px;
+         z-index: 1000;
+         opacity: 1;
+
+      }
+      .addcart-completed {
+         animation-name: show-success;
+         animation-duration: 5s;
+      }
+      @keyframes show-success {
+         0% {
+            opacity: 1;
+         }
+         10% {
+            top: 60px;
+         }
+         75% {
+            top: 60px;
+            opacity: 1;
+         }
+         90% {
+            opacity: 0;
+         }
+      }
     </style>
    <body>
-<div class="hero_area">
+    <div class="popup">
+   <div class="addcart-successful" id='showsuccess'>
+        <i class="fa-solid fa-circle-check"></i> order cancelled successfully
+    </div>
+    </div>
+    <div class="hero_area">
         @include('home.header')
         <div class="full-container">
         <div class="order-container">
@@ -139,7 +204,7 @@
                     $productId = $product->product_id;
                 @endphp
                 <div class="each-products">
-                    <a class="product-image" href="{{url('/product-details?product_id='.$productId)}}"><img src="uploads/{{$product->orderProduct->image}}" style="height: 100%; width: 100%;"></a>
+                    <a class="product-image" href="{{url('/product-details?product_id='.$productId)}}"><img src="uploads/{{$product->orderProduct->image}}" style="height: 80%; width: 100%;"></a>
                     <div class="order-details-container">
                         <div class="order-details-header">
                             {{$product->orderProduct->title}}
@@ -164,11 +229,18 @@
                     <div class="order-status">
                          <div class="status-round" style="background-color: {{$product->payment_status == '0'? '#FF9F00' : 'green'}}"></div>
                         @if($product->payment_status == '0')
-                        Cash On Delivery
+                        Cash on Delivery
                         @else
                             Prepaid
                         @endif
                     </div>
+                    
+                    @if($product->delivery_status == '0')
+                        <div class="cancel-order" id="cancel-order" onclick="cancelOrder({{$product->id}})">Cancel Order</div>
+                    @else
+                        
+                        <div class="rate-review"> <i class="fa fa-star" aria-hidden="true" style="color:green; font-size: 12px; margin-right: 6px;"></i><span class="padding-top: 10px;">Rate product</span></div>
+                    @endif
                     </div>
                 </div>
 
@@ -192,6 +264,28 @@
         </div>
         </div>
         </div>
+
+        <script>
+            let cancelOrders = document.getElementsByClassName('cancel-order');
+            let showSuccess = document.getElementById('showsuccess');
+            
+            const cancelOrder = (orderId) => {
+                fetch(`/api/cancel-order?orderId=${orderId}`)
+                .then(response => {
+                    if(response.ok) {
+                    console.log('called')
+                     showSuccess.classList.remove('addcart-completed');
+                     void showSuccess.offsetWidth;
+                     showSuccess.classList.add('addcart-completed');
+
+                    }
+                })
+                .catch(error => {
+                    console.log('Error occured during execution:', error);
+                })
+            }
+
+        </script>
     <script src="home/js/jquery-3.4.1.min.js"></script>
       <script src="https://kit.fontawesome.com/42f8c3c6e9.js" crossorigin="anonymous"></script>
       <!-- popper js -->

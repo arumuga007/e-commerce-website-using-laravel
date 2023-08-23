@@ -69,3 +69,4 @@ Route::post('/api/update-user', [AdminController:: class, 'updateUser']);
 Route::post('/confirm_order', [HomeController::class, 'confirm_order']);
 Route::post('/confirm_order_buynow', [HomeController::class, 'confirmOrderBuynow']);
 Route::get('ordered_products',[HomeController::class, 'ordered_products']);
+Route::get('/api/cancel-order', [HomeController::class, 'cancelOrder']);
