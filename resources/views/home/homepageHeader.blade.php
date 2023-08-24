@@ -14,8 +14,8 @@
           <input type="text" required class="search-products" placeholder="search for Products, Brands and More" id="search-product-input" >
         </div>
         <a class="item3 animate-text" id="home-product-head">Products</a>
-        <a class="item4 animate-text" href="{{url('ordered_products')}}" style="color:black;">Orders</a>
-        <a class="item5 animate-text" href="{{url('cart_products')}}" style="color:black;"><i class="fa-solid fa-cart-shopping"></i></a>
+        <a class="item4 animate-text" href="{{url('ordered_products')}}" style="color:#153A5B;">Orders</a>
+        <a class="item5 animate-text" href="{{url('cart_products')}}" style="color:#153A5B;"><i class="fa-solid fa-cart-shopping"></i></a>
         <a class="item8 animate-text" onclick='profileInformation()'><i class="fa-solid fa-user"></i></a>
       </nav>
       

@@ -1,44 +1,18 @@
-<section class="main swiper mySwiper" style="
-  overflow: hidden;">
-      <div class="wrapper swiper-wrapper">
-        <div class="slide swiper-slide">
-          <img src="home/images/ecommerce-firstslider.jpg" alt="" class="image" />
-          <div class="image-data animate-text">
-            <span class="text ">Enjoy the finest food.</span>
-            <h2>
-              Enjoy Our Exclusive <br />
-              Food and Drink
-            </h2>
-            <a href="#" class="button">About Us</a>
-          </div>
-        </div>
-        <div class="slide swiper-slide">
-          <img src="home/images/ecommerce-secondslider.jpg" alt="" class="image" />
-          <div class="image-data">
-            <span class="text">We really like what we do.</span>
-            <h2>
-              Innovation sparks some<br />
-              gastronomic revolutions
-            </h2>
-            <a href="#" class="button">About Us</a>
-          </div>
-        </div>
-        <div class="slide swiper-slide">
-          <img src="home/images/slider-bg.jpg" alt="" class="image" />
-          <div class="image-data">
-            <span class="text">Making Our Food with lover.</span>
-            <h2>
-              Where chefs innovate<br />
-              palates celebrate
-            </h2>
-            <a href="#" class="button">About Us</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="swiper-button-next nav-btn change-slide" style="right: 50px; height: 50px;width: 50px;background-color:rgba(0,0,0,.1);"></div>
-      <div class="swiper-button-prev nav-btn" style="right: 50px; height: 50px;width: 50px;background-color:rgba(0,0,0,.1);"></div>
-      <div class="swiper-pagination"></div>
-    </section>
+<div class="slide-container">
+  <div class="slider-text">
+    <div class="slider-text-header">
+      <div class="slider-header-first">The World's most trusted</div>
+      <div class="slider-header-second">& secure e-commerce site</div>
+    </div>
+    <div class="slider-text-description">
+    Embark on a shopping journey like no other, where your aspirations come to life through a curated <span style="color:#007CFF;">collection</span> of <span style="color:#007CFF;">products</span> that inspire and elevate your lifestyle.
+    </div>
+    <span class="slider-text-btn">
+        shop now
+        <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512" style="color: white;padding-left: 5px;"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg>
+</span>
+  </div>
+  <img src="home/images/sixth.jpg">
+</div>
     </div>
 </div>
