@@ -194,7 +194,7 @@
             <span style="color: green;" id="discount-price">-₹{{$discountPrice}}</span>
         </div>
         <div class="price-items">
-            <span>Delivery Charges</span>
+            <span>Delivery Charge</span>
             <span style="color: green;">Free</span>
         </div>
         
@@ -278,9 +278,9 @@
             </div>`;
                     })
             console.log(price);
-            spanPrice.innerHTML = `${price}`;
-            spanDiscountPrice.innerHTML = `${discountPrice}`;
-            spanTotalPrice.innerHTML = `${price - discountPrice}`;
+            spanPrice.innerHTML = `₹${price}`;
+            spanDiscountPrice.innerHTML = `₹${discountPrice}`;
+            spanTotalPrice.innerHTML = `₹${price - discountPrice}`;
             spanItems.innerHTML = `Price(${noOfItem} Items)`;
             
 

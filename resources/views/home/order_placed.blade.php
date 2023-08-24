@@ -24,9 +24,68 @@
       <!-- responsive style -->
       <link href="home/css/responsive.css" rel="stylesheet" />
    </head>
+   <style>
+      .order-confirm-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100vw;
+            height: 90vh;
+            background-color: #F5FAFE;
+      }
+      .sub-container {
+            padding: 20px 0px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: white;
+            min-width: 400px;
+            min-height: 40%;
+            justify-content: space-between;
+      }
+      .order-icon {
+            color: blue;
+            font-size: 2em;
+      }
+      .order-body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+      }
+      .order-successful-text {
+            font-size: 1.3em;
+            color: blue;
+      }
+      .thank-you-text {
+            font-size: 0.8em;
+            color: gray;
+      }
+      .check-status-btn {
+            color: white;
+            padding: 7px 16px;
+            background-color: blue;
+            border-radius: 3px;
+            font-size: .9em;
+            transition: all linear .2s;
+      }
+      .check-status-btn:hover {
+            color: white;
+            background-color: orange;
+      }
+   </style>
    <body>
    <div class="hero_area">
          @include('home.header')
+         <div class="order-confirm-container">
+            <div class="sub-container">
+            <div><i class="fa-solid fa-circle-check deliver-done order-icon"></i> </div>
+            <div class="order-body">
+                  <div class="order-successful-text">Order Successful</div>
+                  <div class="thank-you-text">Thank you so much for your order</div>
+            </div>
+            <a class="check-status-btn" href="{{url('ordered_products')}}">CHECK STATUS</a>
+            </div>
+      </div>
 
     </div>
     <script src="home/js/jquery-3.4.1.min.js"></script>

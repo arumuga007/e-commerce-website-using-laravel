@@ -18,22 +18,25 @@ body {
   position: absolute;
   display: flex;
   flex-direction: column;
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  padding: 15px 20px;
+  background-color: white;
+  color: black;
+  padding: 10px 13px;
+  padding-left: 20px;
   border-radius: 4px;
   border: 1px solid;
   border-color: rgba(0, 0, 0, 0.1);
-  font-size: 1.2em;
-  top: 75px;
-  right: 50px;
+  font-size: 1em;
+  top: 60px;
+  right: 20px;
   z-index: 9999;
-  text-align: center;
   opacity: 0;
   transition: all linear .2s;
 }
+.profile-info-header {
+  font-size: .8em;
+}
 .profile-info a {
-  color: white;
+  color: black;
   transition: all linear .3s;
 }
 .profile-info a:hover {
@@ -41,6 +44,9 @@ body {
 }
 .show-profile-info {
   opacity: 1;
+}
+.profile {
+  padding-bottom: 8px;
 }
 .containers {
   min-height: 110vh;

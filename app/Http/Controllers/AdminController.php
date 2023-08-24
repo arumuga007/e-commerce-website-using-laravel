@@ -48,7 +48,9 @@ class AdminController extends Controller
         $data = Category::find($id);
         return view('admin.edit_category', compact('data'));
     }
-    public function modify_category(Request $request,$id) {    
+    public function modify_category(Request $request,$id) {
+        if($request->isMethod('GET'))
+            return redirect()->back();
         $data = Category::find($id);
         $data->category_name = $request->newCategory;
         $data->save();
@@ -165,6 +167,15 @@ class AdminController extends Controller
         return redirect()->back()->with('message', "Product Removed Successfully");
     }
 
+    public function searchProduct(Request $request) {
+        $query = $request->productName;
+        $data = product::where('title', 'LIKE', "%$query%")
+            ->orWhere('category', 'LIKE', "%$query%")
+            ->orWhere('subcategory', 'LIKE', "%$query%")
+            ->get();
+        return view('admin.show_product', compact('data'));
+    }
+
     public function post_subcategory(Request $request) {
         $data = $request->json()->all();
         $sub_category = new subcategory();
@@ -175,6 +186,12 @@ class AdminController extends Controller
     }
 
     public function view_orders() {
+        $orderProducts = Order::all();
+        $orderItemGroup = $orderProducts->groupBy('product_id');
+        return view('admin.all_orders',compact('orderItemGroup'));
+    }
+
+    public function searchOrder(Request $request) {
         $orderProducts = Order::all();
         $orderItemGroup = $orderProducts->groupBy('product_id');
         return view('admin.all_orders',compact('orderItemGroup'));

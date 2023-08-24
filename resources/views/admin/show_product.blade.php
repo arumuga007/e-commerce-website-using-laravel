@@ -13,7 +13,7 @@
       <!-- partial -->
       <div class="container-fluid page-body-wrapper">
         <!-- partial:partials/_navbar.html -->
-        @include('admin.header')
+        @include('admin.productHeader')
         <!-- partial -->
         <div class="main-panel">
           <div class="content-wrapper">
