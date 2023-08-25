@@ -79,7 +79,7 @@
       .then(data => {
         if(eventFlag == 1) {
           eventFlag = 0;
-          window.removeEventListener('scroll', loadMore)
+          window.removeEventListener('scroll', loadMore);
         }
         products = data.result;
         container.innerHTML = '';
@@ -110,6 +110,14 @@
     }
         productBtn.addEventListener("click", () => {
           productPlace.scrollIntoView({ behavior: "smooth" });
+          eventFlag = 0;
+          container.innerHTML = '';
+          offset = 0;
+          loading = false;
+          hasMoreData = false;
+          illustrationContainer.classList.remove('illustration-container');
+          illustrationContainer.innerHTML = '';
+          loadMoreProducts();
         });
       function profileInformation() {
          let profile = document.getElementById('profile-info');
