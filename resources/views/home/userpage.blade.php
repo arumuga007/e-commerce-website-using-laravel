@@ -27,6 +27,7 @@
       <link href="home/css/style.css" rel="stylesheet" />
       <!-- responsive style -->
       <link href="home/css/responsive.css" rel="stylesheet" />
+      <link href="home/css/categoryPage.css" rel="stylesheet" />
       <link href="home/css/stylehome.css" rel="stylesheet" />
       <link href="home/css/swiper-bundle.min.css" rel="stylesheet" />
    </head>

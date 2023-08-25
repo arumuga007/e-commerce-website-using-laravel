@@ -1,0 +1,19 @@
+.category-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+}
+.category-header {
+    font-size: 1.7em;
+    font-weight: 600;
+    align-self: center;
+}
+.category-body-container {
+    display: flex;
+    flex-direction: row;
+    gap: 2vw;
+}
+.category-item {
+    height: 300px;
+    width: 300px;
+}

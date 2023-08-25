@@ -11,8 +11,12 @@
                
          </div>
       </section>
+      <div id="illustration-container">
+         
+      </div>
       <script>
          let container = document.getElementById('productContainer');
+         let illustrationContainer = document.getElementById('illustration-container');
          let loading = false;
          let hasMoreData = false;
          let offset = 0;
@@ -34,28 +38,55 @@
             }
             if (data.length > 0) {
                 data.forEach(product => {
+                  let actualPrices = product.price - product.discount_price;
+                  let discountPercent = Math.floor((product.discount_price * 100) / product.price);
                   const encodedData = encodeURIComponent(JSON.stringify(product));
                  container.innerHTML += `<div class="col-sm-6 col-md-4 col-lg-4 product_container" >
                  
-                  <div class="box" onclick="nothing('${encodedData}')" style="cursor:pointer;">
+                  <div class="box each-product-box" onclick="nothing('${encodedData}')" style="cursor:pointer;">
                      
-                     <div class="img-box">
+                     <div class="img-box" >
                         <img src="uploads/${product.image}" alt="">
                      </div>
-                     <div class="detail-box">
-                        <h5>
-                           ${product.title}
-                        </h5>
-                        <h6>
-                        ₹${product.price}
-                        </h6>
-                     </div>`;
+                     <div class="product-title">
+                        ${product.title}
+                     </div>
+                     
+            <div class="details-rating">
+            <i class="fa fa-star" aria-hidden="true" style="color: red; font-size: .8em;"></i>
+            <i class="fa fa-star" aria-hidden="true" style="color: red; font-size: .8em;"></i>
+            <i class="fa fa-star" aria-hidden="true" style="color: red; font-size: .8em;"></i>
+            <i class="fa fa-star" aria-hidden="true" style="color: red; font-size: .8em;"></i>
+            <i class="far fa-star" style="color: red; font-size: .8em;"></i>
+             <span  style="font-size: .8em;">(20)</span>
+            </div>
+            <div class="product-price-container">
+                  <div class="product-current-price">
+                  ₹${actualPrices}
+                  </div>
+                  <div class="product-actual-price">
+                  ₹${product.price}
+                  </div>
+                  <div class="product-discount-percent">
+                     ${discountPercent}%
+                  </div>
+            </div>
+                     `;
                 });
-                // Increment the offset by the limit for the next request
                 offset += limit;
             }
             else {
                hasMoreData = true;
+               illustrationContainer.classList.add('illustration-container');
+               illustrationContainer.innerHTML = `<img src="home/images/nomoreitem.jpg">
+               <div class="illustration-body">
+               <div class="illustration-header">
+                     No More Item Left
+                  </div>
+                  <div class="illustration-btn">
+                     Explore Now
+                  </div>
+               </div>`;
             }
             loading = false;
         })

@@ -543,3 +543,64 @@ a.button:hover {
 .search-products:focus {
   border-color: transparent;
 }
+
+.each-product-box {
+  height: 370px;
+  overflow: hidden;
+}
+
+.product-title {
+  width: 100%;
+  font-size: 1em;
+}
+.product-price-container {
+  margin-top: 1.5vh;
+  display: flex;
+  flex-direction: row;
+  gap: 1vw;
+  align-items: end;
+}
+
+.product-current-price {
+  font-weight: 500;
+  color: black;
+  font-size: 1em;
+}
+
+.product-actual-price {
+  font-size: 0.9em;
+  color: gray;
+  text-decoration: line-through;
+}
+
+.product-discount-percent {
+  font-size: 0.9em;
+  color: green;
+}
+.illustration-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding: 0px 250px;
+  height: 50vh;
+  gap: 10%;
+}
+.illustration-body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10%;
+}
+
+.illustration-header {
+  font-size: 1.2em;
+  font-weight: 500;
+}
+.illustration-btn {
+  padding: 10px 20px;
+  border-radius: 4px;
+  background-color: #007CFF;
+  color: white;
+}

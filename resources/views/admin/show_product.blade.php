@@ -6,6 +6,12 @@
     <title>Admin-Category</title>
     @include('admin.style')
 </head>
+<style>
+
+.show-product-table tr, .show-product-table th, .show-product-table td{
+  border: 1px solid white;
+}
+</style>
 <body>
 <div class="container-scroller">
       <!-- partial:partials/_sidebar.html -->
@@ -30,7 +36,7 @@
                 <table class="show-product-table">
                   <tr style="margin-bottom: 5px">
                     <th class="product-table-header">Product Title </th>
-                    <th class="product-table-header">Description </th>
+                    <th class="product-table-header" style="max-width: 180px;">Description </th>
                     <th class="product-table-header">Quantity </th>
                     <th class="product-table-header">Category</th>
                     <th class="product-table-header">SubCategory</th>
@@ -42,7 +48,7 @@
                   @foreach($data as $data)
                   <tr>
                     <td class="product-table-data">{{$data->title}} </td>
-                    <td class="product-table-data">{{$data->description}} </td>
+                    <td class="product-table-data" style="max-width: 180px;">{{$data->description}} </td>
                     <td class="product-table-data">{{$data->quantity}}</td>
                     <td class="product-table-data">{{$data->category}}</td>
                     <td class="product-table-data">{{$data->subcategory}}</td>

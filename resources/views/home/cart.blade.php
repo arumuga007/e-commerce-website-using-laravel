@@ -60,6 +60,7 @@
     background-color: #FFFFFF;
 }
 .cart-image {
+    padding-left: 10px;
     height: 95%;
     width: 30%;
 }
@@ -68,22 +69,22 @@
     flex-direction: column;
 }
 .details-header {
-    font-size: 1.5em;
-    font-weight: 500;
+    font-size: 1.2em;
+    font-weight: 400;
 }
 .given-price {
          text-decoration: line-through;
 }
 .actual-price {
          margin-top: 7px;
-         font-weight: 500;
-         font-size: 1.3em;
+         font-weight: 400;
+         font-size: 1.1em;
          margin-right: 10px;
       }
 
       .discount-price {
          color: green;
-         font-weight: 500;
+         font-weight: 400;
          margin-left: 15px;
       }
 .details-quantity-price {
@@ -101,9 +102,10 @@
     border-radius: 4px;
 }
 .remove-btn {
-    background-color: #F1F3F6;
-    border: 1.3px solid black;
+    background-color: white;
+    border: 1.3px solid red;
     padding: 5px 10px;
+    color: red;
     border-radius: 4px;
     transition: all linear 0.2s;
 }
@@ -135,11 +137,11 @@
     margin-right: 2vw;
 }
 .price-header {
-    font-size: 1.7em;
+    font-size: 1.3em;
     width: 100%;
     font-weight: 500;
     text-align: center;
-    margin: 10px 0;
+    margin-top: 10px;
 }
 .price-body {
     margin: 10px 20px; 
@@ -253,8 +255,8 @@
             <a class="cart-image" href="{{url('product-details?product_id=${data.product.id}')}}"><img src="uploads/${data.product.image}" style="height: 100%; width: 100%;cursor: pointer"></a>
             <div class="details-container">
                 <div class="details-header">${data.product.title}</div>
-                <div class="details-category">${data.product.category} || ${data.product.subcategory}</div>
-                <div class="product-stock">
+                <div class="details-category" style="font-size: .9em;color: gray;">${data.product.category} || ${data.product.subcategory}</div>
+                <div class="product-stock" style="font-size: .8em;">
                   
                     ${data.product.quantity > 0 ? '<div class="in-stock" style="color: green">In stock <i class="fa-solid fa-tag"></i></div>'
                   :
@@ -262,13 +264,13 @@
                </div>
                <div class="product-price">
                   <span class="actual-price">₹${currentPrice}</span>
-                  <span class="given-price">₹${data.product.price}</span>
-                  <span class="discount-price">${discountPercent}% off</span>
+                  <span class="given-price" style="font-size:.8em;color: gray;">₹${data.product.price}</span>
+                  <span class="discount-price" style="font-size:.8em;">${discountPercent}% off</span>
 
                </div>
                <div class="details-quantity-price"> 
                     <input type=number value="${data.quantity}" class="quantity-field" onchange="updateQuantity(${data.id}, ${data.product.quantity})" id="quantity" min=1>
-                    <a href='#' class="remove-btn" id="remove-item" onclick="removeItem(${data.id})" style="color: black;">Remove</a>
+                    <a href='#' class="remove-btn" id="remove-item" onclick="removeItem(${data.id})" >Remove</a>
                 </div>
             </div>
             <div class="delivery-detail">Delivery by Sep 3
