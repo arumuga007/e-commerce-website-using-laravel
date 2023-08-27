@@ -1,10 +1,7 @@
 
 <div class="containers">
     <div class="header">
-      <div class="logo-and-name">
-      <div class="logo animate-text"></div>
       <div class="Organisation_name animate-text">WHIZO</div>
-      </div>
       <label>
         <i class="menu-icon animate-text" onclick="getMenu()">Menu</i>
       </label>
@@ -12,6 +9,7 @@
         <a class="item1 animate-text" style="position: relative;color: black;" href="{{url('/redirect')}}">Home</a>
         <a class="item2 animate-text">Services</a>
         <a class="item3 animate-text">Products</a>
+        <a class="category-in-header animate-text">Categories</a>
         <a class="item4 animate-text" href="{{url('ordered_products')}}" style="color:black;">Orders</a>
         <a class="item5 animate-text" href="{{url('cart_products')}}" style="color:black;"><i class="fa-solid fa-cart-shopping"></i></a>
         <a class="item8 animate-text" onclick='profileInformation()'><i class="fa-solid fa-user"></i></a>

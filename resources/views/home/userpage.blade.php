@@ -29,32 +29,18 @@
       <link href="home/css/responsive.css" rel="stylesheet" />
       <link href="home/css/categoryPage.css" rel="stylesheet" />
       <link href="home/css/stylehome.css" rel="stylesheet" />
+      <link href="home/css/bodyhome.css" rel="stylesheet" />
+      <link href="home/css/product.css" rel="stylesheet" />
+      <link href="home/css/homeResponsive.css" rel="stylesheet" />
       <link href="home/css/swiper-bundle.min.css" rel="stylesheet" />
    </head>
    <body>
-      
-   
-      <div class="hero_area">
       @include('home.homepageHeader')
       @include('home.slider')
-         <!-- end slider section -->
-      </div>
+      @include('home.category')
       <!-- why section -->
         @include('home.why')
-        @include('home.product')
-      <!-- arrival section 
-        
-        @include('home.subscribe')
-        @include('home.client')
-        @include('home.footer') 
-      <div class="cpy_">
-         <p class="mx-auto">© 2021 All Rights Reserved By <a href="https://html.design/">Free Html Templates</a><br>
-         
-            Distributed By <a href="https://themewagon.com/" target="_blank">ThemeWagon</a>
-         
-         </p>
-      </div> -->
-      <!-- jQery -->
+        @include('home.ourProduct')
       <script src="home/js/jquery-3.4.1.min.js"></script>
       <script src="https://kit.fontawesome.com/42f8c3c6e9.js" crossorigin="anonymous"></script>
       <!-- popper js -->

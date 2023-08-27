@@ -43,7 +43,7 @@
     }
     .order-header {
         font-size: 1.4em;
-        font-weight: 600;
+        font-weight: 500;
         padding-top: 1vh;
         padding-left: 2vw;
         background-color: #FFFFFF;
@@ -75,7 +75,7 @@
         border: 1px solid;
         border-color: rgba(0,0,0,.1);
         border-radius: 4px;
-        font-weight: 500;
+        font-weight: 400;
     }
     .product-image {
         height: 100%;
@@ -86,8 +86,8 @@
         cursor:pointer;
     }
     .order-details-container {
-        font-size: 1.2em;
-        font-weight: 560;
+        font-size: 1.1em;
+        font-weight: 450;
     }
     .status-round {
         height: 8px;

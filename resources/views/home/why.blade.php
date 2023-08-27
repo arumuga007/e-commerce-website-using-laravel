@@ -1,11 +1,10 @@
 <section class="why_section layout_padding">
-         <div class="container">
-            <div class="heading_container heading_center">
-               <h2>
+         <div class="container" style="padding: 0px; margin: 0px;">
+            <div class="heading_container heading_center" style="margin-bottom: 6vh;width: 100vw;font-size: 1.8em; font-weight: 500;color: #153A5B;">
                   Why Shop With Us
-               </h2>
             </div>
-            <div class="row">
+            <hr style="width: 100vw; margin-bottom: 2vh;">
+            <div class="rows">
                <div class="col-md-4">
                   <div class="box ">
                      <div class="img-box">
@@ -100,7 +99,7 @@
                            Fast Delivery
                         </h5>
                         <p>
-                           variations of passages of Lorem Ipsum available
+                           We have 1000+ delivery partners around the world
                         </p>
                      </div>
                   </div>
@@ -212,10 +211,10 @@
                      </div>
                      <div class="detail-box">
                         <h5>
-                           Free Shiping
+                           Free Shipping
                         </h5>
                         <p>
-                           variations of passages of Lorem Ipsum available
+                           We proivide free shipping for your first three orders
                         </p>
                      </div>
                   </div>
@@ -236,7 +235,7 @@
                            Best Quality
                         </h5>
                         <p>
-                           variations of passages of Lorem Ipsum available
+                           All our products have best quality and one year on-site warranty
                         </p>
                      </div>
                   </div>

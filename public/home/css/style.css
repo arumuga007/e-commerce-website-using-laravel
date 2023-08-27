@@ -570,12 +570,23 @@ a:focus {
   color: #f7444e;
 }
 
+.rows {
+  display: flex;
+  flex-direction: row;
+  margin: 0px;
+  justify-content: space-between;
+  height: auto;
+  width: 100vw;
+  padding: 0px 4vw;
+  
+}
 .why_section .box {
     text-align: center;
     margin-top: 45px;
-    background-color: #002c3e;
+    background-color: #007cff;
     padding: 45px 50px;
     border-radius: 5px;
+    height: 55vh;
     color: #ffffff;
 }
 

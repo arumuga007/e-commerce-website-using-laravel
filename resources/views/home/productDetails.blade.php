@@ -32,7 +32,9 @@
 <div class="container-scroller">
       @include('home.header')
       <div class="product-container">
-         <img src="uploads/{{$data->image}}" class="image-container">
+         <div class="image-container">
+         <img src="uploads/{{$data->image}}" class="product-image">
+         </div>
          <div class="product-details">
             <div class="details-header">
             {{$data->title}}
@@ -47,7 +49,7 @@
             </div>
             <div class="description-header">Details:</div>
             <div class="product-description">{{$data->description}}</div>
-            <div class="product-price"><span style="font-weight: 600; font-size: 1.4em; padding-right: 10px;">₹{{$data->price - $data->discount_price}}</span> <span style="text-decoration: line-through;font-size: 0.9em;">₹{{$data->price}}</span></div>
+            <div class="product-price"><span style="font-weight: 600; font-size: 1.4em; padding-right: 10px; color: #2DCE40;">₹{{$data->price - $data->discount_price}}</span> <span style="text-decoration: line-through;font-size: 0.9em;">₹{{$data->price}}</span></div>
             
                <form method="post" class="quantity-container">
                      @csrf

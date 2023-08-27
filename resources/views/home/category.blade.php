@@ -2,13 +2,14 @@
     <div class="category-header">
         Popular Categories
     </div>
+    <hr>
     <div class="category-body-container">
         <div class="category-item">
             <div class="category-img-container">
-                <img src="home/images/samsung.jpg" class="category-img">
+                <img src="home/images/clothes.jpeg" class="category-img">
             </div>
             <div class="category-name">
-                    Mobiles
+                    Clothes
             </div>
         </div>
         <div class="category-item">
@@ -18,29 +19,54 @@
             <div class="category-name">
                 Mobiles
             </div>
-            </div>
+        </div>
             <div class="category-item">
             <div class="category-img-container">
-            <img src="home/images/samsung.jpg" class="category-img">
+            <img src="home/images/laptops.jpeg" class="category-img">
             </div>
             <div class="category-name">
-                Mobiles
+                Laptops
             </div>
         </div>
         <div class="category-item">
             <div class="category-img-container">
-            <img src="home/images/samsung.jpg" class="category-img">
+            <img src="home/images/accessories.jpeg" class="category-img">
             </div>
             <div class="category-name">
-                Mobiles
+                Accessories
             </div>
         </div>
         <div class="category-item">
             <div class="category-img-container">
-            <img src="home/images/samsung.jpg" class="category-img">
+            <img src="home/images/earphones.jpeg" class="category-img">
             </div>
             <div class="category-name">
-                Mobiles
+                Earphones
+            </div>
+        </div>
+        
+        <div class="category-item">
+            <div class="category-img-container">
+            <img src="home/images/smartwatches.jpeg" class="category-img">
+            </div>
+            <div class="category-name">
+                Smart Watches
+            </div>
+        </div>
+        <div class="category-item">
+            <div class="category-img-container">
+            <img src="home/images/bags.jpeg" class="category-img">
+            </div>
+            <div class="category-name">
+                Bags
+            </div>
+        </div>
+        <div class="category-item">
+            <div class="category-img-container">
+            <img src="home/images/toys.jpeg" class="category-img">
+            </div>
+            <div class="category-name">
+                Toys
             </div>
         </div>
     </div>

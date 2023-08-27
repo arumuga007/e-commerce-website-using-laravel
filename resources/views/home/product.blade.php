@@ -6,7 +6,8 @@
                </h2>
             </div>
             <div class="row" id="productContainer" style="overflow: auto;">
-                  </div>
+            
+            </div>
                </div>
                
          </div>
