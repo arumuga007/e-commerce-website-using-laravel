@@ -37,15 +37,17 @@
     background-color: #E8F4F4;
     align-items: center;
     cursor: pointer;
+    box-shadow: 0 0 3px rgba(196,196,196, .5);
+    transition: all linear .2s;
 }
-
 .category-img {
-    max-height: 90%;
-    max-width: 100%;
+    max-height: 70%;
+    max-width: 70%;
     width: auto;
     height: auto;
     display: block;
     margin: auto; 
+    transition: all linear .2s;
 }
 
 .category-name {

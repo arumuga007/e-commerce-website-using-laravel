@@ -33,11 +33,15 @@
             }
             if (data.length > 0) {
                 data.forEach(product => {
+                  let productDate = new Date(product.created_at);
+                  var dayBeforeYesterday = new Date();
+                  dayBeforeYesterday.setDate(dayBeforeYesterday.getDate() - 2);
                   let actualPrices = product.price - product.discount_price;
                   let discountPercent = Math.floor((product.discount_price * 100) / product.price);
                   const encodedData = encodeURIComponent(JSON.stringify(product));
                  container.innerHTML += `<div class="our-product-each" onclick="nothing('${encodedData}')" style="cursor:pointer;">
             <div class="our-product-image-container">
+            <div class="new-product" style="visibility:${(dayBeforeYesterday < productDate) ? 'visible' : 'hidden'}">new</div>
             <img src="uploads/${product.image}" alt="product-image" class="our-product-image">
             </div>
             <div class="our-product-details-container">

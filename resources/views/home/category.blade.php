@@ -71,3 +71,18 @@
         </div>
     </div>
 </div>
+
+<script>
+let categoryContainer = document.querySelectorAll('.category-img-container');
+
+categoryContainer.forEach(container => {container.addEventListener('mouseenter', () => {
+    let categoryImg = event.currentTarget.firstElementChild;
+    categoryImg.style.transform = 'scale(1.1)';
+});
+container.addEventListener('mouseleave', () => {
+    let categoryImg = event.currentTarget.firstElementChild;
+    categoryImg.style.transform = 'scale(1)';
+})
+
+});
+</script>

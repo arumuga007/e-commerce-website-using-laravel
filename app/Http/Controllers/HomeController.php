@@ -33,7 +33,7 @@ class HomeController extends Controller
         $offset = $request->input('offset', 0);
         $limit = $request->input('limit', 10);
         
-        $products = product::offset($offset)->limit($limit)->get();
+        $products = product::orderBy('title')->offset($offset)->limit($limit)->get();
         
         return response()->json($products);
     }
