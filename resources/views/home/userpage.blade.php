@@ -26,7 +26,6 @@
       <!-- Custom styles for this template -->
       <link href="home/css/style.css" rel="stylesheet" />
       <!-- responsive style -->
-      <link href="home/css/responsive.css" rel="stylesheet" />
       <link href="home/css/categoryPage.css" rel="stylesheet" />
       <link href="home/css/stylehome.css" rel="stylesheet" />
       <link href="home/css/bodyhome.css" rel="stylesheet" />
@@ -49,14 +48,14 @@
       <script src="home/js/bootstrap.js"></script>
       <!-- custom js -->
       <script src="home/js/custom.js"></script>
+      <script src="home/js/responsive.js"></script>
       <script src="home/js/swiper-bundle.min.js"></script>
       <script>
         let inputField = document.getElementById('search-product-input');
         let getProductBtn = document.getElementById('search-product-btn');
         let productBtn = document.getElementById('home-product-head');
         let productPlace = document.getElementById('home-product-place');
-        console.log(eventFlag);
-    function getProductsUsingSearch() {
+      function getProductsUsingSearch() {
       productPlace.scrollIntoView({ behavior: "smooth" });
       fetch(`api/getproducts-using-search?searchValue=${inputField.value}`)
       .then(response => {
@@ -70,23 +69,33 @@
         products = data.result;
         container.innerHTML = '';
         products.forEach(product => {
+          let actualPrices = product.price - product.discount_price;
+          let discountPercent = Math.floor((product.discount_price * 100) / product.price);
           console.log(product);
           const encodedData = encodeURIComponent(JSON.stringify(product));
-          container.innerHTML += `<div class="col-sm-6 col-md-4 col-lg-4 product_container" >
-                 
-                 <div class="box" onclick="nothing('${encodedData}')" style="cursor:pointer;">
-                    
-                    <div class="img-box">
-                       <img src="uploads/${product.image}" alt="">
-                    </div>
-                    <div class="detail-box">
-                       <h5>
-                          ${product.title}
-                       </h5>
-                       <h6>
-                       ₹${product.price}
-                       </h6>
-                    </div>`;
+          container.innerHTML += `<div class="our-product-each" onclick="nothing('${encodedData}')" style="cursor:pointer;">
+            <div class="our-product-image-container">
+            <img src="uploads/${product.image}" alt="product-image" class="our-product-image">
+            </div>
+            <div class="our-product-details-container">
+                <div class="our-product-details-header">
+                    ${product.title}
+                </div>
+                <div class="our-products-details-rating">
+            <i class="fa fa-star" aria-hidden="true" style="color: red; font-size: .6em;"></i>
+            <i class="fa fa-star" aria-hidden="true" style="color: red; font-size: .6em;"></i>
+            <i class="fa fa-star" aria-hidden="true" style="color: red; font-size: .6em;"></i>
+            <i class="fa fa-star" aria-hidden="true" style="color: red; font-size: .6em;"></i>
+            <i class="far fa-star" style="color: red; font-size: .6em;"></i>
+             <span  style="font-size: .6em;">(20)</span>
+            </div>
+                <div class="our-product-price">
+                    <span>₹${actualPrices}</span>
+                    <span style="font-size: .8em; color: gray; text-decoration: line-through;align-self:end;">₹${product.price}</span>
+                    <span style="font-size: .8em; color: green;">${discountPercent}%</span>
+                </div>
+            </div>
+        </div>`;
         })
 
       })
@@ -95,6 +104,7 @@
       })
     }
         productBtn.addEventListener("click", () => {
+          console.log('product clicked');
           productPlace.scrollIntoView({ behavior: "smooth" });
           eventFlag = 0;
           container.innerHTML = '';
@@ -121,6 +131,56 @@
           prevEl: ".swiper-button-prev",
         },
       });
+
+      //below function is the get product method for the popular category section
+      function getProducts(categoryName) {
+      productPlace.scrollIntoView({ behavior: "smooth" });
+      fetch(`api/getproducts-using-search?searchValue=${categoryName}`)
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+        if(eventFlag == 1) {
+          eventFlag = 0;
+          window.removeEventListener('scroll', loadMore);
+        }
+        products = data.result;
+        container.innerHTML = '';
+        products.forEach(product => {
+          let actualPrices = product.price - product.discount_price;
+          let discountPercent = Math.floor((product.discount_price * 100) / product.price);
+          console.log(product);
+          const encodedData = encodeURIComponent(JSON.stringify(product));
+          container.innerHTML += `<div class="our-product-each" onclick="nothing('${encodedData}')" style="cursor:pointer;">
+            <div class="our-product-image-container">
+            <img src="uploads/${product.image}" alt="product-image" class="our-product-image">
+            </div>
+            <div class="our-product-details-container">
+                <div class="our-product-details-header">
+                    ${product.title}
+                </div>
+                <div class="our-products-details-rating">
+            <i class="fa fa-star" aria-hidden="true" style="color: red; font-size: .6em;"></i>
+            <i class="fa fa-star" aria-hidden="true" style="color: red; font-size: .6em;"></i>
+            <i class="fa fa-star" aria-hidden="true" style="color: red; font-size: .6em;"></i>
+            <i class="fa fa-star" aria-hidden="true" style="color: red; font-size: .6em;"></i>
+            <i class="far fa-star" style="color: red; font-size: .6em;"></i>
+             <span  style="font-size: .6em;">(20)</span>
+            </div>
+                <div class="our-product-price">
+                    <span>₹${actualPrices}</span>
+                    <span style="font-size: .8em; color: gray; text-decoration: line-through;align-self:end;">₹${product.price}</span>
+                    <span style="font-size: .8em; color: green;">${discountPercent}%</span>
+                </div>
+            </div>
+        </div>`;
+        })
+
+      })
+      .catch(error => {
+        console.log('error occured during execution:', error);
+      })
+    }
     </script>
    </body>
 </html>

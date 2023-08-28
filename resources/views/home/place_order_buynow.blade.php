@@ -63,8 +63,8 @@
     flex-direction: column;
 }
 .delivery-header {
-    font-weight: 600;   
-    font-size: 1.5em;
+    font-weight: 500;   
+    font-size: 1.3em;
 }
 .label {
     color: green;
@@ -128,8 +128,8 @@
 .price-details-header {
     margin-top: 10px;
     text-align: center;
-    font-size: 1.5em;
-    font-weight: 600;
+    font-size: 1.3em;
+    font-weight: 500;
 }
 .price-container {
     padding: 20px;
@@ -143,6 +143,7 @@
     display:flex;
     flex-direction: row;
     justify-content: space-between;
+    font-size: .85em;
 }
 .back-btn {
     padding: 4px 20px;
@@ -188,7 +189,7 @@
          text-align: center;
          padding: 10px 20px;
          border-radius: 5px;
-         left: 45%;
+         left: 35%;
          top:4vh;
          z-index: 100;
          opacity: 0;
@@ -262,7 +263,7 @@
                                 <input type="radio" name="payment_method" value="1" style="margin-left:25px;margin-top: 5px;"><span>UPI</span>
                             </div>
                             
-                            <div class="each-payment-options" style="display: inline-block;display:flex; flex-direction:row;width: 20%;justify-content:center;">
+                            <div class="each-payment-options" style="display: inline-block;display:flex; flex-direction:row;width: 20%;justify-content:center;margin-left: 100px;">
                                 <input type="radio" name="payment_method" value="1" style="margin-left:25px;margin-top: 5px;"><span>NetBanking</span>
                             </div>
                             </div>

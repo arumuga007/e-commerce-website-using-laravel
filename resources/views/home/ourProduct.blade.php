@@ -1,9 +1,9 @@
-<div class='our-product'>
+<div class='our-product' id="home-product-place">
     <div class="our-product-header">
         Our Products
     </div>
     <hr width="100%">
-    <div class="our-product-body" id="productContainer">
+    <div class="our-product-body" id="productContainer" style="overflow: hidden;">
     </div>
 </div>
 <div id="illustration-container">

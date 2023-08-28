@@ -27,6 +27,8 @@
     display: flex;
     flex-direction: column;
     background-color: #FFF7F2;
+    min-height: 250px;
+    max-height: 500px;
     height: 55vh;
     gap: 6%;
     transition: all linear .2s;

@@ -150,23 +150,17 @@
         align-items: center;
         cursor: pointer;
     }
-    .popup {
-        position: absolute;
-        display: flex;
-        justify-content: center;
-        width: 100vw;
-    }
-      .addcart-successful {
-         position: absolute;
-         background-color: black;
+.addcart-successful {
+         position: fixed;
+         background-color: #454545;
          color: #1ABE4D;
          text-align: center;
          padding: 10px 20px;
          border-radius: 5px;
-         top: -50px;
-         z-index: 1000;
-         opacity: 1;
-
+         left: 35%;
+         top:4vh;
+         z-index: 100;
+         opacity: 0;
       }
       .addcart-completed {
          animation-name: show-success;
@@ -177,10 +171,10 @@
             opacity: 1;
          }
          10% {
-            top: 60px;
+            top:18vh;
          }
          75% {
-            top: 60px;
+            top:18vh;
             opacity: 1;
          }
          90% {
@@ -189,10 +183,8 @@
       }
     </style>
    <body>
-    <div class="popup">
-   <div class="addcart-successful" id='showsuccess'>
-        <i class="fa-solid fa-circle-check"></i> order cancelled successfully
-    </div>
+    <div class="addcart-successful" id='showsuccess'>
+        <i class="fa-solid fa-circle-check"></i> Order Cancelled Successfully
     </div>
     <div class="hero_area">
         @include('home.header')
@@ -205,7 +197,7 @@
                     $productId = $product->product_id;
                 @endphp
                 <div class="each-products">
-                    <a class="product-image" href="{{url('/product-details?product_id='.$productId)}}"><img src="uploads/{{$product->orderProduct->image}}" style="height: 80%; width: 100%;"></a>
+                    <a class="product-image" href="{{url('/product-details?product_id='.$productId)}}" style="display: flex; align-items: center; justify-content: center;"><img src="uploads/{{$product->orderProduct->image}}" style="max-height: 80%; max-width: 100%;object-fit: cover; width: auto; height: auto;"></a>
                     <div class="order-details-container">
                         <div class="order-details-header">
                             {{$product->orderProduct->title}}
@@ -279,7 +271,7 @@
                 fetch(`/api/cancel-order?orderId=${orderId}`)
                 .then(response => {
                     if(response.ok) {
-                    console.log('called')
+                    console.log('order cancelled');
                      showSuccess.classList.remove('addcart-completed');
                      void showSuccess.offsetWidth;
                      showSuccess.classList.add('addcart-completed');

@@ -5,67 +5,67 @@
     <hr>
     <div class="category-body-container">
         <div class="category-item">
-            <div class="category-img-container">
-                <img src="home/images/clothes.jpeg" class="category-img">
+            <div class="category-img-container" onclick="getProducts('cloth')">
+                <img src="home/images/tshirt.png" class="category-img">
             </div>
-            <div class="category-name">
+            <div class="category-name" onclick="getProducts('cloth')">
                     Clothes
             </div>
         </div>
         <div class="category-item">
-            <div class="category-img-container">
-            <img src="home/images/samsung.jpg" class="category-img">
+            <div class="category-img-container" onclick="getProducts('mobile')">
+            <img src="home/images/samsung-rm.png" class="category-img">
             </div>
-            <div class="category-name">
+            <div class="category-name" onclick="getProducts('mobile')">
                 Mobiles
             </div>
         </div>
             <div class="category-item">
-            <div class="category-img-container">
-            <img src="home/images/laptops.jpeg" class="category-img">
+            <div class="category-img-container" onclick="getProducts('laptop')">
+            <img src="home/images/laptops.png" class="category-img">
             </div>
-            <div class="category-name">
+            <div class="category-name" onclick="getProducts('laptop')">
                 Laptops
             </div>
         </div>
         <div class="category-item">
             <div class="category-img-container">
-            <img src="home/images/accessories.jpeg" class="category-img">
+            <img src="home/images/shoe.png" class="category-img" onclick="getProducts('shoe')">
             </div>
-            <div class="category-name">
-                Accessories
+            <div class="category-name" onclick="getProducts('shoe')">
+                Shoe
             </div>
         </div>
         <div class="category-item">
-            <div class="category-img-container">
-            <img src="home/images/earphones.jpeg" class="category-img">
+            <div class="category-img-container" onclick="getProducts('airbuds')">
+            <img src="home/images/airbuds.png" class="category-img">
             </div>
-            <div class="category-name">
+            <div class="category-name" onclick="getProducts('airbuds')">
                 Earphones
             </div>
         </div>
         
         <div class="category-item">
-            <div class="category-img-container">
-            <img src="home/images/smartwatches.jpeg" class="category-img">
+            <div class="category-img-container" onclick="getProducts('smartwatch')">
+            <img src="home/images/smartwatch.png" class="category-img">
             </div>
-            <div class="category-name">
+            <div class="category-name" onclick="getProducts('smartwatch')">
                 Smart Watches
             </div>
         </div>
         <div class="category-item">
-            <div class="category-img-container">
-            <img src="home/images/bags.jpeg" class="category-img">
+            <div class="category-img-container" onclick="getProducts('bag')">
+            <img src="home/images/bag.png" class="category-img">
             </div>
-            <div class="category-name">
+            <div class="category-name" onclick="getProducts('bag')">
                 Bags
             </div>
         </div>
         <div class="category-item">
-            <div class="category-img-container">
-            <img src="home/images/toys.jpeg" class="category-img">
+            <div class="category-img-container" onclick="getProducts('toys')">
+            <img src="home/images/homeToy.png" class="category-img">
             </div>
-            <div class="category-name">
+            <div class="category-name" onclick="getProducts('toys')">
                 Toys
             </div>
         </div>

@@ -29,8 +29,9 @@ body {
   top: 60px;
   right: 20px;
   z-index: 9999;
+  visibility: hidden;
   opacity: 0;
-  transition: all linear .2s;
+  transition: all linear .3s;
 }
 .profile-info-header {
   font-size: .8em;
@@ -43,6 +44,7 @@ body {
   color: green;
 }
 .show-profile-info {
+  visibility: visible;
   opacity: 1;
 }
 .profile {
@@ -101,11 +103,39 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  gap: 10px;
   align-items: center;
   background-color:white;
   color: #153A5B;
   overflow: hidden;
-  padding: 5px 20px;
+  padding: 5px 0px;
+  padding-right: 20px;
+}
+.icon-container {
+  display: inline-block;
+  cursor: pointer;
+  visibility: hidden;
+}
+
+.bar1, .bar2, .bar3 {
+  width: 20px;
+  height: 3px;
+  background-color: #333;
+  margin: 3px 0;
+  transition: 0.4s;
+}
+
+.change .bar1 {
+  transform: translate(0, 2px) rotate(-45deg);
+}
+
+.change .bar2 {opacity: 0;}
+
+.change .bar3 {
+  transform: translate(0, -10px) rotate(42deg);
+}
+.hidden-menu-items {
+  display: none;
 }
 .Organisation_name {
   font-size: 1.8em;
@@ -116,12 +146,12 @@ body {
   color: #153A5B;
   flex-direction: row;
   width: 87%;
-  justify-content: center;
   font-size: 1.2em;
   font-weight: 450;
-  gap: 6%;
+  justify-content: space-between;
   transition: linear all 0.1s;
   padding-right: 20px;
+  align-items: center;
 }
 
 .category-in-header {
@@ -422,102 +452,6 @@ a.button:hover {
 .animate-text:hover {
   cursor: pointer;
 }
-@media screen and (max-width: 1110px) {
-  body {
-    font-size: 0.9em; /* Decrease font size for mobile devices */
-  }
-  .logo-and-name {
-    font-size: 1.7em;
-  }
-}
-@media screen and (max-width:800px) {
-.menu-items {
-  flex-direction: column;
-  margin: 0;
-  padding: 0;
-  position: fixed;
-  top: 10vh;
-  width: 100%;
-  height: 100vh;
-  text-align: center;
-  background: rgba(00, 00, 00, 0.5);
-  z-index: 10;
-  transition: all linear 0.2s;
-}
-.hide {
-  left: -100%;
-}
-.logo-and-name {
-  width: 50%; 
-}
-.menu-icon {
-  display: inline-block;
-  margin-right: 5px;
-  font-size: 1.7em;
-  font-weight: 500;
-}
-.nav-btn {
-  visibility: hidden;
-}
-.swiper-pagination-bullet {
-  visibility: visible;
-}
-.intro-head {
-  left: 0px;
-}
-.intro-content {
-  flex-direction: column;
-  height: auto;
-}
-.img-container {
-  width: 100%;
-}
-.about-foodlab {
-  width: auto;
-  text-align: center;
-  margin-top: auto;
-}
-}
-@media screen and (max-width:500px) {
-  .img-container {
-    flex-direction: column;
-    height: auto;
-    margin-right: 0px;
-    gap: 5vh;
-  }
-  .left-img {
-    width: auto;
-    height: auto;
-  }
-  .left-img1 {
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .right-img {
-    height: 0px;
-  }
-  .footer {
-    flex-direction: column;
-  }
-  .footer-contact {
-    width: 100vw;
-    height: 20vh;
-  }
-  .footer-info {
-    width: 100vw;
-    height: 50vh;
-  }
-  .shape-on-footer {
-    right:0;
-    left: auto;
-    border-top-left-radius: 70px;
-    border-top-right-radius: 0px;
-  }
-  .useful-info, .footer-copyright {
-    opacity: 1;
-  }
-}
 .product-search {
   display: flex;
   flex-direction: row;
@@ -534,6 +468,7 @@ a.button:hover {
   background-color: #F0F5FF;
   height: 100%;
   align-items: center;
+  min-width: 260px;
 }
 .search-product-container input {
  border-color: transparent; 

@@ -63,8 +63,8 @@
     flex-direction: column;
 }
 .delivery-header {
-    font-weight: 600;   
-    font-size: 1.5em;
+    font-weight: 500;   
+    font-size: 1.3em;
 }
 .label {
     color: green;
@@ -128,8 +128,8 @@
 .price-details-header {
     margin-top: 10px;
     text-align: center;
-    font-size: 1.5em;
-    font-weight: 600;
+    font-size: 1.3em;
+    font-weight: 500;
 }
 .price-container {
     padding: 20px;
@@ -143,6 +143,7 @@
     display:flex;
     flex-direction: row;
     justify-content: space-between;
+    font-size: 0.85em;
 }
 .back-btn {
     padding: 4px 20px;
@@ -188,7 +189,7 @@
          text-align: center;
          padding: 10px 20px;
          border-radius: 5px;
-         left: 45%;
+         left: 35%;
          top:4vh;
          z-index: 100;
          opacity: 0;
@@ -220,7 +221,7 @@
 
    <body>
    <div class="addcart-successful" id='showsuccess'>
-        <i class="fa-solid fa-circle-check"></i> Delivery Address Updated successfully
+        <i class="fa-solid fa-circle-check"></i> Delivery Address Updated successfully.
     </div>
       <div class="hero_area">
         @include('home.header')
