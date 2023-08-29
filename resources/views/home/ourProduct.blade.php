@@ -92,7 +92,7 @@ function nothing(encodedProduct) {
 }
 loadMoreProducts();
 function loadMore() {
-   if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 10) { 
+   if (window.innerHeight + window.scrollY + 1000 >= document.body.offsetHeight - 10) { 
       loadMoreProducts();
    }
    }

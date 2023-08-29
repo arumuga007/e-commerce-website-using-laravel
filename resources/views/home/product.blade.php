@@ -102,7 +102,14 @@ function nothing(encodedProduct) {
 }
 loadMoreProducts();
 function loadMore() {
-   if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 10) { 
+   console.log(window.innerHeight);
+   console.log(window.scrollY);
+   console.log(window.innerHeight + window.scrollY);
+   console.log(window.innerHeight + window.scrollY + 100000);
+   console.log(document.body.offsetHeight);
+
+   if ((window.innerHeight + window.scrollY + 1000) >= document.body.offsetHeight) { 
+      console.log('reached the end of the page');
       loadMoreProducts();
    }
    }

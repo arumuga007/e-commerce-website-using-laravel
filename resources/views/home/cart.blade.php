@@ -69,7 +69,7 @@
     flex-direction: column;
 }
 .details-header {
-    font-size: 1.2em;
+    font-size: 1.1em;
     font-weight: 400;
 }
 .given-price {
@@ -78,7 +78,7 @@
 .actual-price {
          margin-top: 7px;
          font-weight: 400;
-         font-size: 1.1em;
+         font-size: .91em;
          margin-right: 10px;
       }
 
@@ -107,6 +107,7 @@
     padding: 5px 10px;
     color: red;
     border-radius: 4px;
+    font-size: .9em;
     transition: all linear 0.2s;
 }
 .remove-btn:hover {
@@ -137,9 +138,9 @@
     margin-right: 2vw;
 }
 .price-header {
-    font-size: 1.3em;
+    font-size: 1.2em;
     width: 100%;
-    font-weight: 500;
+    font-weight: 400;
     text-align: center;
     margin-top: 10px;
 }
@@ -152,7 +153,8 @@
     width: 100%;
     margin-top: 20px;
     justify-content: space-between;
-    font-weight: 500;
+    font-weight: 400;
+    font-size: 0.9em;
 }
 .place-order-container {
     display: flex;
@@ -255,7 +257,7 @@
             <a class="cart-image" href="{{url('product-details?product_id=${data.product.id}')}}"><img src="uploads/${data.product.image}" style="height: 100%; width: 100%;cursor: pointer"></a>
             <div class="details-container">
                 <div class="details-header">${data.product.title}</div>
-                <div class="details-category" style="font-size: .9em;color: gray;">${data.product.category} || ${data.product.subcategory}</div>
+                <div class="details-category" style="font-size: .8em;color: gray;">${data.product.category} || ${data.product.subcategory}</div>
                 <div class="product-stock" style="font-size: .8em;">
                   
                     ${data.product.quantity > 0 ? '<div class="in-stock" style="color: green">In stock <i class="fa-solid fa-tag"></i></div>'
@@ -264,8 +266,8 @@
                </div>
                <div class="product-price">
                   <span class="actual-price">₹${currentPrice}</span>
-                  <span class="given-price" style="font-size:.8em;color: gray;">₹${data.product.price}</span>
-                  <span class="discount-price" style="font-size:.8em;">${discountPercent}% off</span>
+                  <span class="given-price" style="font-size:.78em;color: gray;">₹${data.product.price}</span>
+                  <span class="discount-price" style="font-size:.78em;">${discountPercent}% off</span>
 
                </div>
                <div class="details-quantity-price"> 

@@ -31,6 +31,7 @@
       <link href="home/css/bodyhome.css" rel="stylesheet" />
       <link href="home/css/product.css" rel="stylesheet" />
       <link href="home/css/homeResponsive.css" rel="stylesheet" />
+      <link href="home/css/homefooter.css" rel="stylesheet" />
       <link href="home/css/swiper-bundle.min.css" rel="stylesheet" />
    </head>
    <body>
@@ -40,6 +41,7 @@
       <!-- why section -->
         @include('home.why')
         @include('home.ourProduct')
+        @include('home.footers')
       <script src="home/js/jquery-3.4.1.min.js"></script>
       <script src="https://kit.fontawesome.com/42f8c3c6e9.js" crossorigin="anonymous"></script>
       <!-- popper js -->

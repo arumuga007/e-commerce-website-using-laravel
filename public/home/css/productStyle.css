@@ -21,16 +21,20 @@
     justify-content: center;
     overflow: hidden;
     position: relative;
+    z-index: -1;
+    transition: all linear 0.2s;
 
 }
-
+.image-container:hover {
+    cursor: pointer;
+}
 .product-image {
     max-height: 100%;
     max-width: 100%;
     width: auto;
     height: auto;
     display: block;
-    margin: auto; 
+    margin: auto;
 }
 
 .product-details {
@@ -73,14 +77,20 @@
 
 .product-btn {
     outline: none;
-    border: 1px solid red;
+    border: 1px solid transparent;
     background-color: red;
     color: white;
     padding: 10px 30px;
     font-weight: 500;
+    transition: all linear .2s;
+    box-shadow: 0px 0px 3px rgba(2566, 0, 0, .5);
 }
+.product-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(2566, 0, 0, .5);
+}
+
 .product-btn:focus {
-    border-color: red;
     outline: none;
 }
 
