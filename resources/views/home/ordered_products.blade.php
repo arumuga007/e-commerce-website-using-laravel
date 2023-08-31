@@ -177,14 +177,132 @@
             top:18vh;
             opacity: 1;
          }
-         90% {
+             90% {
             opacity: 0;
          }
       }
+      .rate-product-container {
+        position: fixed;
+        min-height: 230px;
+        min-width: 300px;
+        text-align: center;
+        height: auto;
+        width: auto;
+        background-color: white;
+        border: 1px solid;
+        border-color: rgba(0,0,0,0.1);
+        border-radius: 5px;
+        top: 30%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 100;
+        background-color: #E8ECF6;
+        visibility: hidden;
+        opacity: 0;
+        transition: all linear 0.2s;
+      }
+
+      .rate-product-header {
+        background-color: white;
+        height: 20%;
+        padding: 10px 0px;
+        font-weight: 450;
+      }
+
+      .rate-product-body {
+        height: 140px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        cursor: default;
+      }
+
+      .rate-product-btn {
+        color: white;
+        background-color: #5D55DB;
+        display: inline-block;
+        width: 100px;
+        padding: 5px 5px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .rate-product-footer {
+        height: 20%;
+        background-color: white;
+        padding: 10px 0px;
+        cursor: pointer;
+      }
+      .star-icons {
+        cursor:pointer;
+      }
+
+      .show-rate-product {
+        animation: showRate 0.3s linear 1 forwards;
+      }
+
+      @keyframes showRate {
+        0% {
+            opacity: .5;
+        }
+        50% {
+            top: 40%;
+            opacity: 1;
+        }
+        100% {
+            opacity: 1;
+            top: 50%;
+        }
+      }
+
+      @keyframes closeRate {
+        0% {
+            top: 50%;
+        }
+        50% {
+            top: 40%;
+            opacity: .5;
+        }
+        100% {
+            opacity:0;
+            top: 30%;
+            visibility: hidden;
+        }
+      }
+
     </style>
-   <body>
+   <body style="position:relative;">
+    <div class="rate-product-container" id="rate-product-container">
+      <div class="rate-product-header">
+        Your opinion matters to us!
+      </div>
+      <div class="rate-product-body">
+        <div class="rate-body-header">
+            How was the quality of product?
+        </div>
+        <div class="rate-star-container">
+            
+        <i class="far fa-star star-icons" aria-hidden="true" style="color: green;" data-value=0></i>
+        <i class="far fa-star star-icons" aria-hidden="true" style="color: green;" data-value=1></i>
+        <i class="far fa-star star-icons" aria-hidden="true" style="color: green;" data-value=2></i>
+        <i class="far fa-star star-icons" aria-hidden="true" style="color: green;" data-value=3></i>
+        <i class="far fa-star star-icons" aria-hidden="true" style="color: green;" data-value=4></i>
+        </div>
+        <div class="rate-product-btn" onclick="postProductRate()">
+                Rate now
+        </div>
+
+      </div>
+      <div class="rate-product-footer">
+           <span onclick="closeRateDialog()" style="color: #007cff"> May be later</span>
+      </div>
+    </div>
     <div class="addcart-successful" id='showsuccess'>
         <i class="fa-solid fa-circle-check"></i> Order Cancelled Successfully
+    </div>
+    <div class="addcart-successful" id='show-rate'>
+        <i class="fa-solid fa-circle-check"></i> Thank you so much. Your review has been saved
     </div>
     <div class="hero_area">
         @include('home.header')
@@ -232,7 +350,7 @@
                         <div class="cancel-order" id="cancel-order" onclick="cancelOrder({{$product->id}})">Cancel Order</div>
                     @else
                         
-                        <div class="rate-review"> <i class="fa fa-star" aria-hidden="true" style="color:green; font-size: 12px; margin-right: 6px;"></i><span class="padding-top: 10px;">Rate product</span></div>
+                        <div class="rate-review" onclick="openRatingDialog({{$product->orderProduct->id}})"> <i class="fa fa-star" aria-hidden="true" style="color:green; font-size: 12px; margin-right: 6px;"></i><span class="padding-top: 10px;">Rate product</span></div>
                     @endif
                     </div>
                 </div>
@@ -259,9 +377,28 @@
         </div>
 
         <script>
+            let showRate = document.getElementById('show-rate');
             let cancelOrders = document.getElementsByClassName('cancel-order');
             let showSuccess = document.getElementById('showsuccess');
-            
+            let reviewIcons = document.querySelectorAll('.star-icons');
+            let rateProductId = 0;
+            let ratingValue = 0;
+            let rateProductContainer = document.getElementById('rate-product-container');
+            reviewIcons.forEach(icon => {
+                icon.addEventListener('click', (event) => {
+                    let limit = parseInt(icon.getAttribute('data-value'));
+                    ratingValue = limit + 1;
+                    let i = 0;
+                    for(i = 0; i <= limit; i++) {
+                        reviewIcons[i].classList.add('fas');
+                        reviewIcons[i].classList.remove('far');
+                    }
+                    for(j = limit + 1; j < reviewIcons.length; j++) {
+                        reviewIcons[j].classList.add('far');
+                        reviewIcons[j].classList.remove('fas');
+                    }
+                })
+            })
             
             function profileInformation() {
                 let profile = document.getElementById('profile-info');
@@ -280,6 +417,36 @@
                 })
                 .catch(error => {
                     console.log('Error occured during execution:', error);
+                })
+            }
+            const openRatingDialog = (productId) => {
+                rateProductId = productId;
+                rateProductContainer.style.animation = 'none';
+                void rateProductContainer.offsetWidth;
+                rateProductContainer.style.visibility = 'visible';
+                rateProductContainer.style.animation="showRate 0.3s linear 1 forwards";
+            }
+
+            const closeRateDialog = () => {
+                rateProductContainer.style.animation = 'none';
+                void rateProductContainer.offsetWidth;
+                rateProductContainer.style.animation="closeRate 0.3s linear 1 forwards";
+            }
+
+            const postProductRate = () => {
+                fetch(`/api/rate-product?product_id=${rateProductId}&rateValue=${ratingValue}`)
+                .then(response => {
+                    return response.json();
+                })
+                .then(data => {
+                    closeRateDialog();
+                    showRate.classList.remove('addcart-completed');
+                    void showSuccess.offsetWidth;
+                    showRate.classList.add('addcart-completed');
+
+                })
+                .catch(error => {
+                    console.log('error = ', error);
                 })
             }
 

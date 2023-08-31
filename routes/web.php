@@ -99,6 +99,6 @@ Route::get('ordered_products',[HomeController::class, 'ordered_products']);
 Route::get('/api/cancel-order', [HomeController::class, 'cancelOrder']);
 
 });
-
+Route::get('/api/rate-product', [HomeController::class, 'rateProduct']);
 
 Route::get('api/getproducts-using-search',[HomeController::class, 'getProductsUsingSearch']);

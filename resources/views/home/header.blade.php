@@ -1,7 +1,7 @@
 
 <div class="containers">
     <div class="header">
-      <div class="Organisation_name animate-text" style="padding-left: 20px;width: 45%;">WHIZO</div>
+      <div class="Organisation_name animate-text" style="padding-left: 20px;width: 67%;">WHIZO</div>
       <label>
         <i class="menu-icon animate-text" onclick="getMenu()">Menu</i>
       </label>

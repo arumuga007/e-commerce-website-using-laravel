@@ -163,4 +163,15 @@ class HomeController extends Controller
             ->get();
         return response()->json(['result'=> $results]);
     }
+
+    public function rateProduct(Request $request) {
+        $productId = $request->product_id;
+        $rating = $request->rateValue;
+        $product = product::find($productId);
+        $count = $product->no_of_rating == null ? 0 : $product->no_of_rating;
+        $product->no_of_rating = $count + 1;
+        $product->rate = (($product->rate * $count) + $rating) / ($count + 1);
+        $product->save();
+        return response()->json(['message', 'everything is perfect']);
+    }
 }

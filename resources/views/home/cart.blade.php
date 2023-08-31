@@ -33,7 +33,8 @@
     width: 100vw;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
+    padding-left: 2vw;
 }
 .cart-products {
     width: 65%;
@@ -135,7 +136,7 @@
     display: flex;
     flex-direction: column;
     margin-top: 2vh;
-    margin-right: 2vw;
+    margin-right: 3vw;
 }
 .price-header {
     font-size: 1.2em;

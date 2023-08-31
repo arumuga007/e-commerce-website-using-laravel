@@ -35,7 +35,7 @@
                 data.forEach(product => {
                   let productDate = new Date(product.created_at);
                   var dayBeforeYesterday = new Date();
-                  dayBeforeYesterday.setDate(dayBeforeYesterday.getDate() - 2);
+                  dayBeforeYesterday.setDate(dayBeforeYesterday.getDate() - 3);
                   let actualPrices = product.price - product.discount_price;
                   let discountPercent = Math.floor((product.discount_price * 100) / product.price);
                   const encodedData = encodeURIComponent(JSON.stringify(product));
