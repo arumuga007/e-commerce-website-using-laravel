@@ -103,3 +103,7 @@ Route::get('/api/cancel-order', [HomeController::class, 'cancelOrder']);
 Route::get('/api/rate-product', [HomeController::class, 'rateProduct']);
 
 Route::get('api/getproducts-using-search',[HomeController::class, 'getProductsUsingSearch']);
+
+Route::get('go-to-product', function() {
+    return view('home.goToProduct');
+});

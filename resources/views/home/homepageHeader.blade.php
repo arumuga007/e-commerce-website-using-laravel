@@ -1,6 +1,6 @@
 
 <div class="containers">
-    <div class="header">
+    <div class="header" style="position: fixed; top: 0; z-index: 10000;">
     <div class="icon-container" onclick="myFunction(this)" id="icon-container">
   <div class="bar1"></div>
   <div class="bar2"></div>
@@ -25,7 +25,7 @@
       </nav>
       
   </div>
-  <div class='profile-info' id='profile-info'>
+  <div class='profile-info' id='profile-info' >
   <div class='profile-info-header' style="color: black;">Manage Account</div>
   <hr color="gray">
   @auth

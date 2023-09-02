@@ -49,7 +49,7 @@
 </div>
 <div class="container-scroller">
       @include('home.header')
-      <div class="product-container">
+      <div class="product-container" style="margin-top: 11vh;">
          <div class="image-container" id="image-container">
          <img src="uploads/{{$data->image}}" class="product-image">
          </div>

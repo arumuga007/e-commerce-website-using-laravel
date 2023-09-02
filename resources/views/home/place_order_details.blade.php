@@ -225,7 +225,7 @@
     </div>
       <div class="hero_area">
         @include('home.header')
-         <div class="containerss">
+         <div class="containerss" style="margin-top: 11vh;">
             <form method="post" action="confirm_order" style="width: 100%;height:auto;">
             @csrf
             <input type="text" value="{{$user->id}}" style="display: none" name="user_id">

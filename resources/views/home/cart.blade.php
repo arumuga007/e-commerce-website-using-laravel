@@ -182,7 +182,7 @@
             $discountPrice = 0;
             $totalPrice = 0;
         @endphp
-    <div class='cart-container'>
+    <div class='cart-container' style="margin-top: 11vh;">
     <div class='cart-products' id="cart-products" >
     </div>
     <div class="price-details">

@@ -272,8 +272,9 @@
       }
 
     </style>
-   <body style="position:relative;">
-    <div class="rate-product-container" id="rate-product-container">
+   <body>
+   @include('home.header')
+    <div class="rate-product-container" id="rate-product-container" >
       <div class="rate-product-header">
         Your opinion matters to us!
       </div>
@@ -304,9 +305,8 @@
     <div class="addcart-successful" id='show-rate'>
         <i class="fa-solid fa-circle-check"></i> Thank you so much. Your review has been saved
     </div>
-    <div class="hero_area">
-        @include('home.header')
-        <div class="full-container">
+        
+        <div class="full-container" style="margin-top: 10vh;">
         <div class="order-container">
             <div class="order-header">My Orders</div>
         @foreach($orderItemGroup as $product_id => $products)
@@ -359,7 +359,7 @@
             @endforeach 
         @endforeach
         </div>
-        <div class="filter-container">
+        <div class="filter-container" style="margin-right: 17px;">
             <div class="filter-header">
                 Filters
             </div>
