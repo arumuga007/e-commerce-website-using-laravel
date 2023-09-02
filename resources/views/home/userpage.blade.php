@@ -56,6 +56,8 @@
         let inputField = document.getElementById('search-product-input');
         let getProductBtn = document.getElementById('search-product-btn');
         let productBtn = document.getElementById('home-product-head');
+        let categoryBtn = document.querySelector('.category-in-header');
+        let categoryPlace = document.querySelector('.category-header');
         let productPlace = document.getElementById('home-product-place');
       function getProductsUsingSearch() {
       productPlace.scrollIntoView({ behavior: "smooth" });
@@ -183,6 +185,10 @@
         console.log('error occured during execution:', error);
       })
     }
+
+    categoryBtn.addEventListener('click', () => {
+      categoryPlace.scrollIntoView({behavior:'smooth'});
+    })
     </script>
    </body>
 </html>

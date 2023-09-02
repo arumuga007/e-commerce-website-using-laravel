@@ -15,7 +15,7 @@ body {
   transition: all linear 0.2s;
 }
 .profile-info {
-  position: absolute;
+  position: fixed;
   display: flex;
   flex-direction: column;
   background-color: white;
@@ -26,7 +26,7 @@ body {
   border: 1px solid;
   border-color: rgba(0, 0, 0, 0.1);
   font-size: 1em;
-  top: 60px;
+  top: 11vh;
   right: 20px;
   z-index: 9999;
   visibility: hidden;

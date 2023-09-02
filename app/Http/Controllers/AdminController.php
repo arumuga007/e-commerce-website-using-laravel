@@ -215,4 +215,24 @@ class AdminController extends Controller
             $user->save();
         return redirect('login')->with('message', "Password changed successfully");
     }
+    public function searchSubcategory(Request $request) {
+        $query = $request->searchValue;
+    
+        $subcategory = Subcategory::where('subcategory_name', 'LIKE', "%$query%")
+            ->orWhereHas('category', function ($queryBuilder) use ($query) {
+                $queryBuilder->where('category_name', 'LIKE', "%$query%");
+            })
+            ->get();
+    
+        return view('admin.show_subcategory', compact('subcategory'));
+    }
+    
+    public function searchCategory(Request $request) {
+        $query = $request->searchValue;
+        $data = Category::where('category_name', 'LIKE', "%$query%")->get();
+        return view('admin.category', compact('data'));
+    }
+    
+    
+    
 }

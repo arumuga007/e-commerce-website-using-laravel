@@ -38,6 +38,7 @@ Route::match(['get', 'post'], '/add_category', [AdminController::class, 'add_cat
 Route::get('/edit_category/{id}', [AdminController::class, 'edit'])->name('edit_category');
 Route::match(['get', 'post'],'/modify_category/{id}', [AdminController::class, 'modify_category']);
 Route::get('/delete_category/{id}', [AdminController::class, 'delete_category']);
+Route::get('/search-category', [AdminController::class, 'searchCategory']);
 
 });
 
@@ -59,7 +60,7 @@ Route::get('/edit_subcategory', [AdminController::class, 'edit_subcategory']);
 Route::post('/add_subcategory', [AdminController::class, 'add_subcategory']);
 Route::post('/api/post-subcategory', [AdminController::class, 'post_subcategory']);
 Route::post('/api/submit-edit-subcategory', [AdminController::class, 'submit_edit_subcategory']);
-
+Route::get('/search-subcategory', [AdminController::class, 'searchSubcategory']);
 });
 
 
@@ -106,4 +107,8 @@ Route::get('api/getproducts-using-search',[HomeController::class, 'getProductsUs
 
 Route::get('go-to-product', function() {
     return view('home.goToProduct');
+});
+
+Route::get('go-to-categories', function() {
+    return view('home.goToCategories');
 });

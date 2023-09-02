@@ -7,7 +7,7 @@
       </label>
       <nav class="menu-items hide">
         <a class="item1 animate-text" style="position: relative;cursor: pointer;color: #153A5B;" href="{{url('/redirect')}}">Home</a>
-        <a class="item2 animate-text">Services</a>
+        <a class="item2 animate-text header-categories">Categories</a>
         <a class="item3 animate-text header-products">Products</a>
         <a class="item4 animate-text" href="{{url('ordered_products')}}" style="color:black;">Orders</a>
         <a class="item5 animate-text" href="{{url('cart_products')}}" style="color:black;"><i class="fa-solid fa-cart-shopping"></i></a>
@@ -31,6 +31,8 @@
 <script>
 document.querySelector('.header-products').addEventListener('click', () => {
   location.href = '/go-to-product';
-
+});
+document.querySelector('.header-categories').addEventListener('click', () => {
+  location.href = '/go-to-categories';
 })
 </script>
