@@ -29,6 +29,24 @@
 <div class="addcart-successful" id='showsuccess'>
    <i class="fa-solid fa-circle-check"></i> Product added to Cart successfully
 </div>
+<div class="copied">Copied successfully</div>
+<div class="share-container">
+<div class="copy-container">
+<input class="input-class" type="text"><i class="fa fa-link" aria-hidden="true" id="link-icon"></i>
+<i class="fa-solid fa-copy" id="copy-icon"></i>
+</div>
+<hr style="margin: 5px 5px">
+<div class="share-below-container">
+<div class="share-header">
+   share through other apps
+</div>
+<div class="share-social">
+<i class="fa-brands fa-linkedin-in share-icons linked-in"></i>
+<i class="fa fa-whatsapp share-icons whatsapp" aria-hidden="true"></i>
+</div>
+</div>
+</div>
+</div>
 <div class="container-scroller">
       @include('home.header')
       <div class="product-container">
@@ -37,7 +55,8 @@
          </div>
          <div class="product-details">
             <div class="details-header">
-            {{$data->title}}
+            <div>{{$data->title}}</div>
+            <div class="share-option"><i class="fa-solid fa-share"></i>share</div>
             </div>
             <div class="details-rating">
             <i class="fa fa-star" aria-hidden="true" style="color: red; font-size: .8em;"></i>
@@ -73,19 +92,6 @@
 
       </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-      <!-- jQery -->
       <script src="home/js/jquery-3.4.1.min.js"></script>
       <!-- popper js -->
       <script src="home/js/popper.min.js"></script>
@@ -100,6 +106,15 @@
          let buynow = document.getElementById('buynow');
          let quantity = document.getElementById('quantity');
          let showSuccess = document.getElementById('showsuccess');
+         let textToCopy = document.querySelector('.input-class');
+         let copyIcon = document.getElementById('copy-icon');
+         let linkedIn = document.querySelector('.linked-in');
+         let whatsapp = document.querySelector('.whatsapp');
+         let encodedLinkedInUrl = encodeURIComponent(location.href);
+         let shareBtn = document.querySelector('.share-option');
+         let shareContainer = document.querySelector('.share-container');
+         let showCopied = document.querySelector('.copied');
+         textToCopy.value = location.href;
          function profileInformation() {
          let profile = document.getElementById('profile-info');
          profile.classList.toggle('show-profile-info');
@@ -169,6 +184,54 @@
 
             }
          }
+
+         shareBtn.addEventListener('click', (event) => {
+            shareContainer.style.animation = 'none';
+            void shareContainer.offsetWidth;
+            shareContainer.style.visibility = 'visible';
+            shareContainer.style.animation="showRate 0.3s linear 1 forwards";
+            event.stopPropagation();
+            console.log(event.target);
+            console.log(event.currentTarget);
+         })
+         document.addEventListener('click' ,(event) => {
+            if(!shareContainer.contains(event.target)) {
+               shareContainer.style.animation = 'none';
+               void shareContainer.offsetWidth;
+               shareContainer.style.animation="closeRate 0.3s linear 1 forwards";
+            }
+         })
+         copyIcon.addEventListener('click', () => {
+            if(navigator.clipboard) {
+               navigator.clipboard.writeText(location.href)
+               .then(() => {
+                  console.log(showCopied);
+                  showCopied.style.animation="none";
+                  void showCopied.offsetWidth;
+                  showCopied.style.animation="showCopied 3s linear 1";
+               })
+               .catch((error) => {
+                  console.log('error occured during execution', error)
+               })
+            }
+            else {
+               alert("Your browser doesn't have a support to copy");
+            }
+         })
+
+         whatsapp.addEventListener('click', () => {
+            if(navigator.onLine)
+               window.open(`https://api.whatsapp.com/send/?text=${location.href}&type=custom_url&app_absent=0`,"_blank");
+            else
+               alert('please connect to internet to share');
+         })
+
+         linkedIn.addEventListener('click', () => {
+            if(navigator.onLine)
+               window.open(`https://www.linkedin.com/shareArticle?url=https://127.0.0.1:8000/product-details?product_id=6`, "_blank");
+            else
+               alert('No internet connection');
+         })
       </script>
    </body>
 </html>
