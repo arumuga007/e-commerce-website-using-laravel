@@ -183,7 +183,7 @@
                     $productId = $product->product_id;
                 @endphp
                 <div class="each-products">
-                    <a class="product-image" href="{{url('/product-details?product_id='.$productId)}}"><img src="uploads/{{$product->orderProduct->image}}" style="height: 100%; width: 100%;"></a>
+                    <a class="product-image" href="{{url('/product-details?product_id='.$productId)}}"><img src="uploads/{{$product->orderProduct->image}}" style="max-height: 100%; max-width: 100%;object-fit:cover;"></a>
                     <div class="order-details-container">
                         <div class="order-details-header">
                             {{$product->orderProduct->title}}
@@ -244,9 +244,11 @@
             fetch(`updateDeliveryStatus?order_id=${order_id}`)
             .then(response => {
                 if(response.ok) {
+                   let status = document.querySelector('.admin-deliver-status');
                     showSuccess.classList.remove('addcart-completed');
                      void showSuccess.offsetWidth;
                      showSuccess.classList.add('addcart-completed');
+                     setTimeout(() => location.reload(), 2000);
                 }
             });
         }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 use App\Models\Category;
 use App\Models\product;
@@ -202,5 +203,16 @@ class AdminController extends Controller
         $order->delivery_status = 1;
         $order->save();
         return response()->json(['msg', "delivery status changed successfully"]);
+    }
+
+    public function changePassword(Request $request) {
+        $email = $request->email;
+        $password = $request->password;
+        $user = User::where('email', $email)->first();
+        if($user == null)
+            return redirect()->back()->with('message', "Please enter correct email");
+            $user->password = Hash::make($password);
+            $user->save();
+        return redirect('login')->with('message', "Password changed successfully");
     }
 }

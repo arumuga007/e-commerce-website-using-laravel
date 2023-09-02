@@ -29,6 +29,7 @@ Route::middleware([
 });
 Route::get('/log-out', [AdminController::class, 'logout']);
 Route::get('/redirect', [HomeController::class, 'redirect'])->middleware('auth');
+Route::post('/change-password', [AdminController::class, 'changePassword']);
 
 
 Route::middleware(['adminonly'])->group(function() {
