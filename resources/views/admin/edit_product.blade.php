@@ -12,7 +12,7 @@
     <!----===== Iconscout CSS ===== -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 
-   <title>Responsive Regisration Form </title>
+   <title>Edit Product</title>
 </head>
 <style>
 /* ===== Google Font Import - Poppins ===== */
@@ -210,7 +210,7 @@ form .buttons button , .backBtn{
                         </div>
 
                         <div class="input-field">
-                            <label>Occupation</label>
+                            <label>Discount Price:</label>
                             <input type="text" placeholder="Enter the amount to discount" required value='{{$data->discount_price}}' name="discount_price">
                         </div>
                         

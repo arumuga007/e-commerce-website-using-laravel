@@ -158,7 +158,7 @@ class AdminController extends Controller
         $image->move(public_path('uploads'), $imageName);
         $product->image = $imageName;
         $product->save();
-        return redirect()->back()->with('message', $request->title. " product edited sucessfully");
+        return redirect('/redirect')->with('message', $request->title. " product edited sucessfully");
     }
 
     public function delete_product($id) {

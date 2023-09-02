@@ -1,4 +1,44 @@
+
+<style>
+.addcart-successful {
+    position: fixed;
+    background-color: white;
+    color: #1ABE4D;
+    text-align: center;
+    padding: 10px 20px;
+    border-radius: 5px;
+    left: 45%;
+    top:4vh;
+    z-index: 10;
+    opacity: 0;
+ }
+ .addcart-completed {
+    animation-name: show-success;
+    animation-duration: 5s;
+ }
+ @keyframes show-success {
+    0% {
+       opacity: 1;
+    }
+    10% {
+       top:18vh;
+    }
+    75% {
+       top:18vh;
+       opacity: 1;
+    }
+    90% {
+       opacity: 0;
+    }
+ }
+</style>
+
 <div class="main-panel">
+                @if(session('message'))
+                <div class="addcart-successful addcart-completed" id='showsuccess'>
+                  <i class="fa-solid fa-circle-check"></i> Product edited successfully
+                </div>
+                @endif
           <div class="content-wrapper">
             <div class="row">
               <div class="col-12 grid-margin stretch-card">
